@@ -10,6 +10,8 @@ export default class DisplayActivitiesContainer extends React.Component {
                 I'm meant to take in the google places api call and render activities based on filtering parameters
                 <GoogleMaps />
                 <ActivityCard />
+                <ActivityCard />
+                <ActivityCard />
             </div>
         )
     }
