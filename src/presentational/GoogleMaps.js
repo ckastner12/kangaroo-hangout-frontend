@@ -7,3 +7,5 @@ const GoogleMaps = props => {
         </div>
     )
 }
+
+export default GoogleMaps
