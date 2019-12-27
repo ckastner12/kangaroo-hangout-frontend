@@ -7,8 +7,10 @@ export default class NewEventContainer extends React.Component {
 
     render() {
         return (
-            <MyActivitiesChain />
-            <DisplayActivitiesContainer />
+            <>
+                <MyActivitiesChain />
+                <DisplayActivitiesContainer />
+            </>
         )
     }
 }
