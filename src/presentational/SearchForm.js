@@ -101,7 +101,6 @@ const selectOptions = [
     "zoo"
 ]
 
-
 const SearchForm = (props) => {
     const renderRadiusOptions = () => {
         return [5,10,15,20].map(num => {

@@ -11,7 +11,7 @@ export default class MyActivitiesChain extends React.Component {
     render() {
         return (
             <div className="my-activities">
-                {this.renderMyActivities()}
+                {this.props.myActivities ? this.renderMyActivities() : []}
             </div>
         )
     }

@@ -1,19 +1,21 @@
 import React from 'react'
 import GoogleMap from 'google-map-react';
 import SearchForm from '../presentational/SearchForm'
+import {Container, Divider} from 'semantic-ui-react'
 
-const GoogleMaps = props => {
+const GoogleMapsContainer = props => {
     return (
-        <div>
+        <Container className="search-activities">
             <h3>I'll display the google maps tool</h3>
             <SearchForm />
+            <Divider />
             <GoogleMap bootstrapURLKeys={{
                 key: "AIzaSyBCHWjw3rHXuSkQDOz2wF7u6nbx9BI3zqk",
                 language: 'en',
                 region: 'en'}}
                 />
-        </div>
+        </Container>
     )
 }
 
-export default GoogleMaps
+export default GoogleMapsContainer
