@@ -125,6 +125,7 @@ const SearchForm = (props) => {
             </Form.Field>
             <Select placeholder="Activity Type" options={renderSelectOptions()} />
             <Select placeholder="Radius of Activity" options={renderRadiusOptions()} />
+            <Form.Button>Search</Form.Button>
         </Form>
     )
 }

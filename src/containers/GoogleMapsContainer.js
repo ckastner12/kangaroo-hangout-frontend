@@ -9,7 +9,7 @@ const GoogleMapsContainer = props => {
             <h3>I'll display the google maps tool</h3>
             <SearchForm />
             <Divider />
-            <MapContainer />
+            {/* <MapContainer /> */}
         </Container>
     )
 }
