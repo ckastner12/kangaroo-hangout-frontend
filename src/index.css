@@ -24,3 +24,12 @@ code {
   max-width: 400px;
   flex: 1;
 }
+
+.loader {
+  text-align: center;
+}
+
+.gif {
+  border-radius: 50%;
+  max-width: 100px;
+}
