@@ -2,15 +2,20 @@ import React from 'react';
 import ActivityCard from '../presentational/ActivityCard';
 
 
-export default class SearchActivitiesContainer extends React.Component {
+const SearchActivitiesContainer = props => {
 
-    render() {
-        return (
-            <div className="search-activities results">
-                <ActivityCard />
-                <ActivityCard />
-                <ActivityCard />
-            </div>
-            )
+    const renderActivities = () => {
+        return props.activities.map(activity => {
+            return <ActivityCard activity={activity} />
+        })
     }
+
+    return (
+        <div className="search-activities results">
+            {renderActivities()}
+        </div>
+        )
+    
 }
+
+export default SearchActivitiesContainer
