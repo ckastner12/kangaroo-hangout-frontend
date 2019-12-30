@@ -1,6 +1,5 @@
 import React from "react";
-import ActivityCard from "../presentational/ActivityCard";
-import GoogleMaps from "./GoogleMapsContainer";
+import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
 
@@ -11,10 +10,33 @@ export default class DisplayActivitiesContainer extends React.Component {
             search: {
                 query: "",
                 location: "",
-                query: "",
+                radius: "",
                 type: ""
             }
         }
+    }
+
+    
+
+    handleOnChange = (event) => {
+        const {id, value} = event.target
+        this.handleOnSelect(id, value)
+    }
+
+    handleOnSelect = (id, value) => {
+        console.log(id, value)
+        this.setState(prevState => {
+            return {
+                search: {
+                    ...prevState.search,
+                    [id]: value
+                }
+            } 
+        })
+    }
+
+    handleOnSearch = () => {
+        fetch()
     }
 
     render() {
@@ -23,7 +45,11 @@ export default class DisplayActivitiesContainer extends React.Component {
                 <MyActivitiesChain />
                 <div className="activities-display">
                     <SearchActivitiesContainer />
-                    <GoogleMaps />
+                    <GoogleMapsContainer 
+                        handleOnChange={this.handleOnChange} 
+                        handleOnSelect={this.handleOnSelect} 
+                        handleOnSearch={this.handleOnSearch}
+                        />
                 </div>
             </>
         )

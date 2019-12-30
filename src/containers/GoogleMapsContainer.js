@@ -7,7 +7,11 @@ const GoogleMapsContainer = props => {
     return (
         <Container className="search-activities">
             <h3>I'll display the google maps tool</h3>
-            <SearchForm />
+            <SearchForm 
+                handleOnChange={props.handleOnChange} 
+                handleOnSelect={props.handleOnSelect} 
+                handleOnSearch={props.handleOnSearch}
+                />
             <Divider />
             {/* <MapContainer /> */}
         </Container>

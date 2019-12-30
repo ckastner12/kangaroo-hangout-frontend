@@ -6,7 +6,9 @@ export default class LandingContainer extends React.Component {
 
     render() {
         return (
-            <Loader />
+            <div>
+                
+            </div>
         )
     }
 }

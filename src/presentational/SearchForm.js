@@ -1,5 +1,47 @@
 import React from 'react'
-import {Button, Form, Select} from 'semantic-ui-react'
+import {Form} from 'semantic-ui-react'
+
+const SearchForm = (props) => {
+    const renderRadiusOptions = () => {
+        return [5,10,15,20].map(num => {
+            return {key: num, value: num * 1600, text: `${num} Miles`}
+        })
+    }
+    const renderSelectOptions = () => {
+        return selectOptions.map(option => {
+            return {key: option, value: option, text: option.replace(/_/g, " ")}
+        })
+    }
+
+    const handleOnSelectRadius = (event) => {
+        props.handleOnSelect("radius", event.target.innerText)
+    }
+
+    const handleOnSelectType = (event) => {
+        props.handleOnSelect("type", event.target.innerText.replace(/ /g, "_"))
+    }
+
+    const handleOnClick = (event) => {
+        event.preventDefault()
+        props.handleOnSearch()
+    }
+
+    return (
+        <Form className="search-form" onChange={props.handleOnChange}>
+            <Form.Field>
+                <label>Search</label>
+                <input placeholder="Search" id="query"/>
+            </Form.Field>
+            <Form.Field>
+                <label>Address</label>
+                <input placeholder="Address" id="location"/>
+            </Form.Field>
+            <Form.Select placeholder="Activity Type" options={renderSelectOptions()} name="type" onChange={handleOnSelectType} />
+            <Form.Select placeholder="Radius of Activity" options={renderRadiusOptions()} name="radius" onChange={handleOnSelectRadius} />
+            <Form.Button onClick={handleOnClick}>Search</Form.Button>
+        </Form>
+    )
+}
 
 const selectOptions = [
     "accounting",
@@ -100,34 +142,5 @@ const selectOptions = [
     "veterinary_care",
     "zoo"
 ]
-
-const SearchForm = (props) => {
-    const renderRadiusOptions = () => {
-        return [5,10,15,20].map(num => {
-            return {key: num, value: num * 1600, text: `${num} Miles`}
-        })
-    }
-    const renderSelectOptions = () => {
-        return selectOptions.map(option => {
-            return {key: option, value: option, text: option.replace(/_/g, " ")}
-        })
-    }
-    
-    return (
-        <Form className="search-form">
-            <Form.Field>
-                <label>Search</label>
-                <input placeholder="Search" />
-            </Form.Field>
-            <Form.Field>
-                <label>Address</label>
-                <input placeholder="Address" />
-            </Form.Field>
-            <Select placeholder="Activity Type" options={renderSelectOptions()} />
-            <Select placeholder="Radius of Activity" options={renderRadiusOptions()} />
-            <Form.Button>Search</Form.Button>
-        </Form>
-    )
-}
 
 export default SearchForm
