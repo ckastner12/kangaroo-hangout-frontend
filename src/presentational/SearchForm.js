@@ -14,11 +14,11 @@ const SearchForm = (props) => {
     }
 
     const handleOnSelectRadius = (event) => {
-        props.handleOnSelect("radius", event.target.innerText)
+        props.handleOnSelect("radius", parseInt(event.target.innerText))
     }
 
     const handleOnSelectType = (event) => {
-        props.handleOnSelect("type", event.target.innerText.replace(/ /g, "_"))
+        props.handleOnSelect("type", event.target.innerText)
     }
 
     const handleOnClick = (event) => {

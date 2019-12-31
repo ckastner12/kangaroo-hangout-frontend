@@ -9,7 +9,7 @@ const SearchActivitiesContainer = props => {
             return <ActivityCard 
                 activity={activity} 
                 key={activity.id}
-                handleAdd={props.handleAdd} /> 
+                handleAdd={props.handleAdd} />
         }) : <h3 className="no-results">No Results</h3>
     }
 

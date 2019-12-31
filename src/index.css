@@ -22,7 +22,6 @@ code {
   flex: 1;
 }
 
-
 .icon {
   max-height: 15px;
 }
@@ -36,7 +35,8 @@ code {
 .search-activities {
   padding: 20px;
   margin-bottom: 20px;
-  max-width: 400px;
+  min-height: 600px;
+  overflow: auto;
   flex: 1;
 }
 
@@ -47,4 +47,14 @@ code {
 .gif {
   border-radius: 50%;
   max-width: 100px;
+}
+
+.search-bar {
+  max-width: 450px;
+}
+
+.results {
+  max-width: 400px;
+  border-radius: 15px;
+  border: 2px solid rgb(255, 90, 95);
 }

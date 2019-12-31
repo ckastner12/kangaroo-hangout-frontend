@@ -13,7 +13,7 @@ export default class DisplayActivitiesContainer extends React.Component {
             search: {
                 query: "",
                 location: "",
-                radius: "",
+                radius: 3200,
                 type: ""
             }
         }

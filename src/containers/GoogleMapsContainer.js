@@ -1,11 +1,11 @@
 import React from 'react'
-import {Map, GoogleApiWrapper} from 'google-map-react';
+import MapContainer from './MapContainer'
 import SearchForm from '../presentational/SearchForm'
 import {Container, Divider} from 'semantic-ui-react'
 
 const GoogleMapsContainer = props => {
     return (
-        <div className="search-activities">
+        <div className="search-activities search-bar">
             <h3>I'll display the google maps tool</h3>
             <SearchForm 
                 handleOnChange={props.handleOnChange} 
@@ -13,7 +13,7 @@ const GoogleMapsContainer = props => {
                 handleOnSearch={props.handleOnSearch}
                 />
             <Divider />
-            {/* <MapContainer /> */}
+            <MapContainer />
         </div>
     )
 }
