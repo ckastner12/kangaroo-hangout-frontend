@@ -13,7 +13,7 @@ const GoogleMapsContainer = props => {
                 handleOnSearch={props.handleOnSearch}
                 />
             <Divider />
-            <MapContainer />
+            {/* <MapContainer /> */}
         </div>
     )
 }
