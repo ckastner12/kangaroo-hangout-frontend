@@ -7,13 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import CreateEvent from './CreateEvent';
 
 ReactDOM.render((
-    <>
-    <div>{"Hello"}</div>
     <Router>
         <Route exact path="/" component={App} />
         <Route path="/events/new" component={CreateEvent} />
-    </Router>
-    </>),
+    </Router>),
     document.getElementById('root')
     );
 

@@ -2,12 +2,15 @@ import React from "react";
 import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
+import LoginModal from "../components/LoginModal"
 import { Divider, Button} from "semantic-ui-react";
 
 export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loggedin: !!localStorage["email"],
+            modal: false,
             results: [],
             myActivities: [],
             search: {
@@ -61,9 +64,66 @@ export default class DisplayActivitiesContainer extends React.Component {
         return false
     }
 
+    handleOnSave = () => {
+        if (this.state.loggedin === false) {
+            this.setState({
+                modal: true
+            })
+        } else {
+            //fetch to the backend
+        }
+    }
+
+    postEvent = () => {
+        fetch("http://localhost:3001/users",{
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: localStorage["email"],
+                activities: this.state.myActivities
+            })
+        })
+    }
+
+    handleOnLogin = (login) => {
+        console.log(login)
+        fetch("http://localhost:3001/users/login", {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(login)
+        })
+            .then(resp => resp.json())
+            .then(json => {})
+    }
+
+    handleOnSignup = (signup) => {
+        console.log(signup)
+        fetch("http://localhost:3001/users", {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(signup)
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+                // localStorage.setItem('email', )
+                // this.setState({
+                //     loggedin: true,
+                //     modal: false
+                // })
+            })  
+    }
     
     handleAdd = (activity) => {
-        //Note this does not restrict users from adding the same activity
         if (this.inMyActivities(activity) === false) {
             this.setState(prevState => {
                 return {myActivities: [...prevState.myActivities, activity]}
@@ -82,11 +142,15 @@ export default class DisplayActivitiesContainer extends React.Component {
     render() {
         return (
             <>
+                <LoginModal 
+                    modal={this.state.modal} 
+                    handleOnLogin={this.handleOnLogin} 
+                    handleOnSignup={this.handleOnSignup} />
                 <MyActivitiesChain 
                     myActivities={this.state.myActivities}
                     handleRemove={this.handleRemove}
                     />
-                <Divider horizontal><Button>Save Event</Button></Divider>
+                <Divider horizontal><Button onClick={this.handleOnSave}>Save Event</Button></Divider>
                 <div className="activities-display">
                     <SearchActivitiesContainer
                         handleAdd={this.handleAdd}
