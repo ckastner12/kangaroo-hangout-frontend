@@ -12,6 +12,18 @@ code {
     monospace;
 }
 
+.activity-chain {
+  height: 200px;
+  background: rgb(255, 90, 95);
+  display: flex;
+}
+
+
+
+.icon {
+  max-height: 15px;
+}
+
 .activities-display {
   max-width: 1400px;
   margin: 40px auto 0 auto;

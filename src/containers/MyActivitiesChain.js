@@ -1,18 +1,21 @@
 import React from 'react';
 import ActivityCard from '../presentational/ActivityCard'
 
-export default class MyActivitiesChain extends React.Component {
-    renderMyActivities = () => {
-        return this.props.myActivities.map(activity => {
-            return <ActivityCard />
+const MyActivitiesChain = props => {
+    const renderMyActivities = () => {
+        return props.myActivities.map(activity => {
+            return <ActivityCard 
+                className="my-activity" 
+                handleRemove={props.handleAdd} 
+                activity={activity} />
         })
     }
 
-    render() {
-        return (
-            <div className="my-activities">
-                {this.props.myActivities ? this.renderMyActivities() : []}
-            </div>
-        )
-    }
+    return (
+        <div className="activity-chain">
+            {props.myActivities ? renderMyActivities() : []}
+        </div>
+    )
 }
+
+export default MyActivitiesChain

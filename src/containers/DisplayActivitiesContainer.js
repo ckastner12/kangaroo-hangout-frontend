@@ -51,13 +51,29 @@ export default class DisplayActivitiesContainer extends React.Component {
         })
     }
 
+    
+    handleAdd = (activity) => {
+        //Note this does not restrict users from adding the same activity
+            this.setState(prevState => {
+                return {myActivities: [...prevState.myActivities, activity]}
+            })
+    }
+
+    handleRemove = (activity) => {
+        console.log(activity)
+    }
 
     render() {
         return (
             <>
-                <MyActivitiesChain />
+                <MyActivitiesChain 
+                    myActivities={this.state.myActivities}
+                    handleRemove={this.handleRemove}
+                    />
                 <div className="activities-display">
-                    <SearchActivitiesContainer activities={this.state.results} />
+                    <SearchActivitiesContainer 
+                        handleAdd={this.handleAdd}
+                        activities={this.state.results} />
                     <GoogleMapsContainer 
                         handleOnChange={this.handleOnChange} 
                         handleOnSelect={this.handleOnSelect} 

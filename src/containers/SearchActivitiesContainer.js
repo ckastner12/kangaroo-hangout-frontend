@@ -5,9 +5,9 @@ import ActivityCard from '../presentational/ActivityCard';
 const SearchActivitiesContainer = props => {
 
     const renderActivities = () => {
-        return props.activities.map(activity => {
-            return <ActivityCard activity={activity} />
-        })
+        return props.activities ? props.activities.map(activity => {
+            return <ActivityCard activity={activity} handleAdd={props.handleAdd} /> 
+        }) : <h3 className="no-results">No Results</h3>
     }
 
     return (

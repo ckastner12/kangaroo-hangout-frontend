@@ -5,7 +5,7 @@ import {Container, Divider} from 'semantic-ui-react'
 
 const GoogleMapsContainer = props => {
     return (
-        <Container className="search-activities">
+        <div className="search-activities">
             <h3>I'll display the google maps tool</h3>
             <SearchForm 
                 handleOnChange={props.handleOnChange} 
@@ -14,7 +14,7 @@ const GoogleMapsContainer = props => {
                 />
             <Divider />
             {/* <MapContainer /> */}
-        </Container>
+        </div>
     )
 }
 
