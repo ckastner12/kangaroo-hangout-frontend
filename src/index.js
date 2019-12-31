@@ -6,10 +6,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import CreateEvent from './CreateEvent';
 
+
+
 ReactDOM.render((
     <Router>
         <Route exact path="/" component={App} />
         <Route path="/events/new" component={CreateEvent} />
+        <Route path="/users/:id" component={UserShow} />
     </Router>),
     document.getElementById('root')
     );

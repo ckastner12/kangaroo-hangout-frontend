@@ -9,7 +9,7 @@ export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedin: !!localStorage["email"],
+            loggedin: !!localStorage["id"],
             modal: false,
             results: [],
             myActivities: [],
@@ -82,45 +82,47 @@ export default class DisplayActivitiesContainer extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: localStorage["email"],
+                user_id: localStorage["id"],
                 activities: this.state.myActivities
-            })
+            }) 
         })
     }
 
     handleOnLogin = (login) => {
-        console.log(login)
-        fetch("http://localhost:3001/users/login", {
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(login)
-        })
-            .then(resp => resp.json())
-            .then(json => {})
+        this.fetchUser("http://localhost:3001/users/login", login)
+            .then(this.loginCallBack)
     }
 
-    handleOnSignup = (signup) => {
-        console.log(signup)
-        fetch("http://localhost:3001/users", {
+    handleOnSignup = (login) => {
+        this.fetchUser("http://localhost:3001/users", login)
+            .then(this.loginCallBack)
+    }
+
+    fetchUser = (path, user) => {
+        return fetch(path, {
             method: "POST",
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(signup)
+            body: JSON.stringify(user)
         })
             .then(resp => resp.json())
-            .then(json => {
-                console.log(json)
-                // localStorage.setItem('email', )
-                // this.setState({
-                //     loggedin: true,
-                //     modal: false
-                // })
-            })  
+    }
+
+    loginCallBack = (json) => {
+        if (json.message !== "Failed Fetch") {
+            this.setState({
+                localStorage: true,
+                modal: false
+            }, () => {
+                localStorage.setItem('id', json.user.id)
+                localStorage.setItem('email', json.user.email)
+                
+            })
+        } else {
+            console.log(json)
+        }
     }
     
     handleAdd = (activity) => {

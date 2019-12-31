@@ -10,5 +10,4 @@ export default class ExploreContainer extends React.Component {
             </div>
         )
     }
-
 }
