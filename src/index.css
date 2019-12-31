@@ -13,11 +13,14 @@ code {
 }
 
 .activity-chain {
-  height: 200px;
+  height: 250px;
   background: rgb(255, 90, 95);
   display: flex;
 }
 
+.my-activity {
+  flex: 1;
+}
 
 
 .icon {

@@ -2,6 +2,7 @@ import React from "react";
 import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
+import { Divider, Button} from "semantic-ui-react";
 
 export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
@@ -51,16 +52,31 @@ export default class DisplayActivitiesContainer extends React.Component {
         })
     }
 
+    inMyActivities = (activity) => {
+        for (let i = 0; i < this.state.myActivities.length; i++) {
+            if (this.state.myActivities[i].id === activity.id) {
+                return true
+            }
+        }
+        return false
+    }
+
     
     handleAdd = (activity) => {
         //Note this does not restrict users from adding the same activity
+        if (this.inMyActivities(activity) === false) {
             this.setState(prevState => {
                 return {myActivities: [...prevState.myActivities, activity]}
             })
+        }
     }
 
-    handleRemove = (activity) => {
-        console.log(activity)
+    handleRemove = (object) => {
+        this.setState(prevState => {
+            return {
+                myActivities: prevState.myActivities.filter(activity => activity.id !== object.id)
+            }
+        })
     }
 
     render() {
@@ -70,8 +86,9 @@ export default class DisplayActivitiesContainer extends React.Component {
                     myActivities={this.state.myActivities}
                     handleRemove={this.handleRemove}
                     />
+                <Divider horizontal><Button>Save Event</Button></Divider>
                 <div className="activities-display">
-                    <SearchActivitiesContainer 
+                    <SearchActivitiesContainer
                         handleAdd={this.handleAdd}
                         activities={this.state.results} />
                     <GoogleMapsContainer 

@@ -6,14 +6,15 @@ const MyActivitiesChain = props => {
         return props.myActivities.map(activity => {
             return <ActivityCard 
                 className="my-activity" 
-                handleRemove={props.handleAdd} 
+                handleRemove={props.handleRemove} 
                 activity={activity} />
         })
     }
 
     return (
         <div className="activity-chain">
-            {props.myActivities ? renderMyActivities() : []}
+            {props.myActivities ? renderMyActivities() : []} 
+            
         </div>
     )
 }

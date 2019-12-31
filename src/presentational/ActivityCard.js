@@ -5,6 +5,7 @@ const ActivityCard = props => {
     const {image, name, types, icon, formatted_address} = props.activity
     const formatTypes = types.reduce((total, type) => total + " " + type)
     const extra = () => {
+        
         return(
             <>
                 {props.handleAdd ? <Button primary onClick={() => props.handleAdd(props.activity)}>Add</Button> 
@@ -16,7 +17,7 @@ const ActivityCard = props => {
 
     return (
         <Card
-            image={props.image}
+            // image={props.image}
             header={name}
             meta={`Types: ${formatTypes}`}
             description={<span><img className="icon" src={icon}/>  {formatted_address}</span>}
