@@ -17,7 +17,6 @@ const ActivityCard = props => {
 
     return (
         <Card
-            // image={props.image}
             header={name}
             meta={`Types: ${formatTypes}`}
             description={<span><img className="icon" src={icon}/>  {formatted_address}</span>}
@@ -27,10 +26,12 @@ const ActivityCard = props => {
 }
 
 ActivityCard.defaultProps = {
-    name: "Placeholder",
-    image: "https://66.media.tumblr.com/cdace9d2fb94029e0c028fd6ed6fe635/tumblr_nkfx7qq6ct1serey3o1_1280.gifv",
-    icon: <Icon name="marker" />,
-    type: "misc"
+    activity: {
+        name: "Cannot Find Name",
+        icon: <Icon name="marker" />,
+        types: "misc",
+        formatted_address: "No Result Found"
+    }
 }
 
 export default ActivityCard

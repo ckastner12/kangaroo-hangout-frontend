@@ -1,18 +1,20 @@
 import React from 'react';
-import {Card} from 'semantic-ui-react'
+import EventCard from '../presentational/EventCard';
 
 const DisplayEvents = props => {
 
     const renderEvents = () => {
         return props.events ? props.events.map(event => {
-            return <Card />
-        })
+            return <EventCard event={event}/>
+        }) : [];
     }
 
     return (
-        <div>
+        <>
             {renderEvents()}
-        </div>
+        </>
     )
 
 }
+
+export default DisplayEvents
