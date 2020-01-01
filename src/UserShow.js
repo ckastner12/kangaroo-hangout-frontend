@@ -17,15 +17,15 @@ export default class UserShow extends React.Component {
             <div className="user-show">
                 <div className="user upcoming">
                     <Header>Upcoming Events</Header>
-                    <DisplayEvent />
+                    <DisplayEvent events={this.state.upcomingEvents}/>
                 </div>
                 <div className="user past">
                     <Header>Your Past events</Header>
-                    <DisplayEvent />
+                    <DisplayEvent events={this.state.pastEvents} />
                 </div>
                 <div className="user request">
                     <Header>Your Event Invitations</Header>
-                    <DisplayEvent />
+                    <DisplayEvent events={this.state.requestEvents}/>
                 </div>
             </div>
         )

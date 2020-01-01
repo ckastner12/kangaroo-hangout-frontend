@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import CreateEvent from './CreateEvent';
 import UserShow from './UserShow'
 import LandingPage from './LandingPage'
@@ -94,7 +94,11 @@ class App extends React.Component {
           <Route path="/events/new" component={() => <CreateEvent 
                                                         handleLogin={this.handleLogin} 
                                                       />} />
-          <Route path="/users/:id" component={UserShow} />
+          <Route path="/users" >
+            localStorage["id"] ? <UserShow {...props} userId=`${localStorage["id"]}` />
+              : <Redirect to="/" />
+          </Route>
+            
         </Router>
     )
   }
