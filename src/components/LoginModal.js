@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Image, Modal , Form, Divider} from 'semantic-ui-react'
+import { Button, Header, Image, Modal , Form, Divider, Icon} from 'semantic-ui-react'
 
 class LoginModal extends React.Component {
 
@@ -47,7 +47,7 @@ class LoginModal extends React.Component {
     render() {
         return (
             <Modal open={this.props.modal} size="small">
-                <Modal.Header>Log in/Sign up</Modal.Header>
+                <Modal.Header><Icon name="times" onClick={this.props.onClickOut}/>Log in/Sign up</Modal.Header>
                 <Modal.Content image>
                 <Modal.Description>
                     <Form onChange={this.handleOnLoginChange} key="login">

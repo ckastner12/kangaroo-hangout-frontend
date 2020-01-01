@@ -9,8 +9,6 @@ export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedin: !!localStorage["id"],
-            modal: false,
             results: [],
             myActivities: [],
             search: {
@@ -65,12 +63,10 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     handleOnSave = () => {
-        if (this.state.loggedin === false) {
-            this.setState({
-                modal: true
-            })
+        if (!localStorage["id"]) {
+            this.props.handleLogin()
         } else {
-            //fetch to the backend
+            this.postEvent()
         }
     }
 

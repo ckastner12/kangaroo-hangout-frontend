@@ -5,7 +5,7 @@ export default class CreateEvent extends React.Component {
 
     render() {
         return (
-            <DisplayActivitiesContainer />
+            <DisplayActivitiesContainer handleLogin={this.props.handleLogin}/>
         )
     }
 } 

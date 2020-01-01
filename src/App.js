@@ -26,65 +26,76 @@ class App extends React.Component {
   }
 
   handleLogin = () => {
+    this.setState({
+      modal: true
+    })
+  }
 
+  onClickOut = () => {
+    this.setState({
+      modal: false
+    })
   }
 
   handleOnLogin = (login) => {
+    console.log(login)
     this.fetchUser("http://localhost:3001/users/login", login)
         .then(this.loginCallBack)
 }
 
-handleOnSignup = (login) => {
-    this.fetchUser("http://localhost:3001/users", login)
-        .then(this.loginCallBack)
-}
+  handleOnSignup = (login) => {
+      this.fetchUser("http://localhost:3001/users", login)
+          .then(this.loginCallBack)
+  }
 
-fetchUser = (path, user) => {
-    return fetch(path, {
-        method: "POST",
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
-        .then(resp => resp.json())
-}
+  fetchUser = (path, user) => {
+      return fetch(path, {
+          method: "POST",
+          headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+      })
+          .then(resp => resp.json())
+  }
 
-loginCallBack = (json) => {
-    if (json.message !== "Failed Fetch") {
-        this.setState({
-            localStorage: true,
-            modal: false
-        }, () => {
-            localStorage.setItem('id', json.user.id)
-            localStorage.setItem('email', json.user.email)
-            
-        })
-    } else {
-        console.log(json)
-    }
-}
+  loginCallBack = (json) => {
+      if (json.message !== "Failed Fetch") {
+          this.setState({
+              loggedin: true,
+              modal: false
+          }, () => {
+              localStorage.setItem('id', json.user.id)
+              localStorage.setItem('email', json.user.email)
+              
+          })
+      } else {
+          console.log(json)
+      }
+  }
 
   renderLoginOptions = () => {
-    return this.state.loggedin ? <Button onClick={handleLogout}>Log out</Button> 
-    : <Button onClick={handleLogin}>Log in</Button>
+    return this.state.loggedin ? <Button onClick={this.handleLogout}>Log out</Button> 
+    : <Button onClick={this.handleLogin}>Log in</Button>
   }
 
   render() {
     return (
-      <>
-      <LoginModal 
-                    modal={this.state.modal} 
-                    handleOnLogin={this.handleOnLogin} 
-                    handleOnSignup={this.handleOnSignup} />
-      {this.renderLoginOptions}
-      <Router>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/events/new" component={CreateEvent} />
-        <Route path="/users/:id" component={UserShow} />
-      </Router>
-      </>
+        <Router>
+          <LoginModal 
+                        modal={this.state.modal} 
+                        handleOnLogin={this.handleOnLogin} 
+                        handleOnSignup={this.handleOnSignup} 
+                        onClickOut={this.onClickOut}
+                        />
+          {this.renderLoginOptions()}
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/events/new" component={() => <CreateEvent 
+                                                        handleLogin={this.handleLogin} 
+                                                      />} />
+          <Route path="/users/:id" component={UserShow} />
+        </Router>
     )
   }
   
