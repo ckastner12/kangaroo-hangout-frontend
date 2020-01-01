@@ -3,7 +3,7 @@ import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
 import LoginModal from "../components/LoginModal"
-import { Divider, Button} from "semantic-ui-react";
+import { Divider, Button, Icon } from "semantic-ui-react";
 
 export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
@@ -87,43 +87,6 @@ export default class DisplayActivitiesContainer extends React.Component {
             }) 
         })
     }
-
-    handleOnLogin = (login) => {
-        this.fetchUser("http://localhost:3001/users/login", login)
-            .then(this.loginCallBack)
-    }
-
-    handleOnSignup = (login) => {
-        this.fetchUser("http://localhost:3001/users", login)
-            .then(this.loginCallBack)
-    }
-
-    fetchUser = (path, user) => {
-        return fetch(path, {
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-            .then(resp => resp.json())
-    }
-
-    loginCallBack = (json) => {
-        if (json.message !== "Failed Fetch") {
-            this.setState({
-                localStorage: true,
-                modal: false
-            }, () => {
-                localStorage.setItem('id', json.user.id)
-                localStorage.setItem('email', json.user.email)
-                
-            })
-        } else {
-            console.log(json)
-        }
-    }
     
     handleAdd = (activity) => {
         if (this.inMyActivities(activity) === false) {
@@ -144,15 +107,11 @@ export default class DisplayActivitiesContainer extends React.Component {
     render() {
         return (
             <>
-                <LoginModal 
-                    modal={this.state.modal} 
-                    handleOnLogin={this.handleOnLogin} 
-                    handleOnSignup={this.handleOnSignup} />
                 <MyActivitiesChain 
                     myActivities={this.state.myActivities}
                     handleRemove={this.handleRemove}
                     />
-                <Divider horizontal><Button onClick={this.handleOnSave}>Save Event</Button></Divider>
+                <Divider horizontal><Button onClick={this.handleOnSave}><Icon name="calendar plus outline" />Save Event</Button></Divider>
                 <div className="activities-display">
                     <SearchActivitiesContainer
                         handleAdd={this.handleAdd}

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form} from 'semantic-ui-react'
+import {Form, Icon} from 'semantic-ui-react'
 
 const SearchForm = (props) => {
     const renderRadiusOptions = () => {
@@ -40,7 +40,7 @@ const SearchForm = (props) => {
                 <Form.Select placeholder="Activity Type" options={renderSelectOptions()} name="type" onChange={handleOnSelectType} />
                 <Form.Select placeholder="Radius of Activity" options={renderRadiusOptions()} name="radius" onChange={handleOnSelectRadius} />
             </Form.Group>
-            <Form.Button onClick={handleOnClick}>Search</Form.Button>
+            <Form.Button onClick={handleOnClick}><Icon name="search" />Search</Form.Button>
         </Form>
     )
 }
