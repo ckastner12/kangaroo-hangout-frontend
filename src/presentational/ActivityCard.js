@@ -3,7 +3,7 @@ import {Card, Icon, Button} from 'semantic-ui-react'
 
 const ActivityCard = props => {
     const {image, name, types, icon, formatted_address} = props.activity
-    const formatTypes = types.reduce((total, type) => total + " " + type)
+    // const formatTypes = types.reduce((total, type) => total + " " + type)
     const extra = () => {
         
         return(
@@ -18,7 +18,7 @@ const ActivityCard = props => {
     return (
         <Card
             header={name}
-            meta={`Types: ${formatTypes}`}
+            // meta={`Types: ${formatTypes}`}
             description={<span><img className="icon" src={icon}/>  {formatted_address}</span>}
             extra={extra()}
         />
@@ -26,12 +26,12 @@ const ActivityCard = props => {
 }
 
 ActivityCard.defaultProps = {
-    // activity: {
-    //     name: "Cannot Find Name",
-    //     icon: <Icon name="marker" />,
-    //     types: "misc",
-    //     formatted_address: "No Result Found"
-    // }
+    activity: {
+        name: "Cannot Find Name",
+        icon: <Icon name="marker" />,
+        types: "misc",
+        formatted_address: "No Result Found"
+    }
 }
 
 export default ActivityCard

@@ -2,7 +2,7 @@ import React from "react";
 import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
-import LoginModal from "../components/LoginModal"
+import DateForm from "../components/DateForm";
 import { Divider, Button, Icon } from "semantic-ui-react";
 
 export default class DisplayActivitiesContainer extends React.Component {
@@ -10,7 +10,12 @@ export default class DisplayActivitiesContainer extends React.Component {
         super(props);
         this.state = {
             results: [],
-            myActivities: [],
+            myActivities: [
+                {name: "Joe's Crab Shack",
+                formatted_address: "123 Jones Strees"}, 
+                {name: "In n out",
+                formatted_address: "124 Jones Strees"},
+            ],
             search: {
                 query: "",
                 location: "",
@@ -23,6 +28,10 @@ export default class DisplayActivitiesContainer extends React.Component {
     handleOnChange = (event) => {
         const {id, value} = event.target
         this.handleOnSelect(id, value)
+    }
+
+    handleChangeDate = (date) => {
+        console.log(typeof date)
     }
 
     handleOnSelect = (id, value) => {
@@ -71,15 +80,17 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     postEvent = () => {
-        fetch("http://localhost:3001/users",{
+        fetch("http://localhost:3001/events",{
             method: "POST",
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user_id: localStorage["id"],
-                activities: this.state.myActivities
+                event: {
+                    user_id: localStorage["id"],
+                    activities_attributes: this.state.myActivities
+                }
             }) 
         })
     }
@@ -107,7 +118,11 @@ export default class DisplayActivitiesContainer extends React.Component {
                     myActivities={this.state.myActivities}
                     handleRemove={this.handleRemove}
                     />
-                <Divider horizontal><Button onClick={this.handleOnSave}><Icon name="calendar plus outline" />Save Event</Button></Divider>
+                <Divider horizontal>
+                        <Button onClick={this.handleOnSave}>
+                        <Icon name="calendar plus outline" />Save Event</Button>
+                        <DateForm handleChangeDate={this.handleChangeDate} />
+                </Divider>
                 <div className="activities-display">
                     <SearchActivitiesContainer
                         handleAdd={this.handleAdd}
