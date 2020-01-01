@@ -26,12 +26,12 @@ const ActivityCard = props => {
 }
 
 ActivityCard.defaultProps = {
-    activity: {
-        name: "Cannot Find Name",
-        icon: <Icon name="marker" />,
-        types: "misc",
-        formatted_address: "No Result Found"
-    }
+    // activity: {
+    //     name: "Cannot Find Name",
+    //     icon: <Icon name="marker" />,
+    //     types: "misc",
+    //     formatted_address: "No Result Found"
+    // }
 }
 
 export default ActivityCard

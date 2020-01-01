@@ -1,16 +1,22 @@
 import React from 'react';
 import './App.css';
-import ExploreContainer from "./containers/ExploreContainer"
-import LandingContainer from "./containers/LandingContainer"
+import { Route } from 'react-router-dom';
+import CreateEvent from './CreateEvent';
+import UserShow from './UserShow'
+import LandingPage from './LandingPage'
 
-function App() {
-  return (
-    <Router>
-        <Route exact path="/" component={App} />
+class App extends React.Component {
+
+  render() {
+    return (
+      <>
+        <Route exact path="/" component={LandingPage} />
         <Route path="/events/new" component={CreateEvent} />
         <Route path="/users/:id" component={UserShow} />
-    </Router>)
-  );
-}
+      </>
+    )
+  }
+  
+  };
 
 export default App;
