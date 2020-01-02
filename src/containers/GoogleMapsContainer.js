@@ -6,7 +6,7 @@ import {Container, Divider} from 'semantic-ui-react'
 const GoogleMapsContainer = props => {
     return (
         <div className="search-activities search-bar">
-            <h3>I'll display the google maps tool</h3>
+            <h3>I'll Search Through Google Maps</h3>
             <SearchForm 
                 handleOnChange={props.handleOnChange} 
                 handleOnSelect={props.handleOnSelect} 

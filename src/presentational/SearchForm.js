@@ -32,10 +32,6 @@ const SearchForm = (props) => {
                 <label>Search</label>
                 <input placeholder="Search" id="query"/>
             </Form.Field>
-            <Form.Field>
-                <label>Address</label>
-                <input placeholder="Address" id="location"/>
-            </Form.Field>
             <Form.Group >
                 <Form.Select placeholder="Activity Type" options={renderSelectOptions()} name="type" onChange={handleOnSelectType} />
                 <Form.Select placeholder="Radius of Activity" options={renderRadiusOptions()} name="radius" onChange={handleOnSelectRadius} />

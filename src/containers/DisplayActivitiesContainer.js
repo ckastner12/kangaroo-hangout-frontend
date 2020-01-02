@@ -4,13 +4,15 @@ import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
 import DateForm from "../components/DateForm";
 import { Redirect } from 'react-router-dom';
-import { Divider, Button, Icon } from "semantic-ui-react";
+import { Divider, Button, Icon, Modal } from "semantic-ui-react";
+import AddressModal from '../components/AddressModal'
 
 export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             results: [],
+            searchModal: true,
             date: new Date(),
             myActivities: [],
             search: {
@@ -25,6 +27,12 @@ export default class DisplayActivitiesContainer extends React.Component {
     handleOnChange = (event) => {
         const {id, value} = event.target
         this.handleOnSelect(id, value)
+    }
+
+    handleSetAddress = () => {
+        this.setState({
+            searchModal: !this.state.searchModal
+        })
     }
 
     handleChangeDate = (date) => {
@@ -122,6 +130,14 @@ export default class DisplayActivitiesContainer extends React.Component {
     render() {
         return (
             <>
+                <Modal open={this.state.searchModal}>
+                    <Modal.Header>Give An Address Before You Search</Modal.Header>
+                    <Modal.Content>
+                        <AddressModal 
+                            handleOnChange={this.handleOnChange} 
+                            handleSetAddress={this.handleSetAddress} />
+                    </Modal.Content>
+                </Modal>
                 <MyActivitiesChain 
                     myActivities={this.state.myActivities}
                     handleRemove={this.handleRemove}
@@ -130,6 +146,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                         <Button onClick={this.handleOnSave}>
                         <Icon name="calendar plus outline" />Save Event</Button>
                         <DateForm handleChangeDate={this.handleChangeDate} date={this.state.date} />
+                        <span><b>Address:</b> {this.state.search.location}</span>
                 </Divider>
                 <div className="activities-display">
                     <SearchActivitiesContainer

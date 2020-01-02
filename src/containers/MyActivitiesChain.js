@@ -14,7 +14,6 @@ const MyActivitiesChain = props => {
     return (
         <div className="activity-chain">
             {props.myActivities ? renderMyActivities() : []} 
-            
         </div>
     )
 }
