@@ -14,11 +14,11 @@ const SearchForm = (props) => {
     }
 
     const handleOnSelectRadius = (event) => {
-        props.handleOnSelect("radius", parseInt(event.target.innerText))
+        props.handleOnSelect("radius", parseInt(event.target.innerText)*1600)
     }
 
     const handleOnSelectType = (event) => {
-        props.handleOnSelect("type", event.target.innerText)
+        props.handleOnSelect("type", event.target.innerText.replace(/ /g, "_"))
     }
 
     const handleOnClick = (event) => {
@@ -30,7 +30,7 @@ const SearchForm = (props) => {
         <Form className="search-form" onChange={props.handleOnChange}>
             <Form.Field>
                 <label>Search</label>
-                <input placeholder="Search" id="query"/>
+                <input placeholder="Keyword" id="query"/>
             </Form.Field>
             <Form.Group >
                 <Form.Select placeholder="Activity Type" options={renderSelectOptions()} name="type" onChange={handleOnSelectType} />

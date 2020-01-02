@@ -18,7 +18,7 @@ export default class DisplayActivitiesContainer extends React.Component {
             search: {
                 query: "",
                 location: "",
-                radius: 3200,
+                radius: 32000,
                 type: ""
             }
         }
@@ -63,6 +63,7 @@ export default class DisplayActivitiesContainer extends React.Component {
         })
         .then(resp => resp.json())
         .then(json => {
+            console.log(json)
             this.setState({
                 results: json.results
             })
@@ -146,7 +147,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                         <Button onClick={this.handleOnSave}>
                         <Icon name="calendar plus outline" />Save Event</Button>
                         <DateForm handleChangeDate={this.handleChangeDate} date={this.state.date} />
-                        <span><b>Address:</b> {this.state.search.location}</span>
+                        <span onClick={this.handleSetAddress}><b>Address:</b> {this.state.search.location}</span>
                 </Divider>
                 <div className="activities-display">
                     <SearchActivitiesContainer
