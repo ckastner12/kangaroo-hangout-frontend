@@ -1,28 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DatePicker from 'react-date-picker';
  
-class DateForm extends Component {
-  state = {
-    date: new Date(),
-  }
- 
-  onChange = date => {
-      this.setState({ date },
-        () => {
-            this.props.handleChangeDate(date)
-        })
+const DateForm = props => {
+
+  const onChange = date => {
+      props.handleChangeDate(date)
     }
- 
-  render() {
-    return (
-      <div>
-        <DatePicker
-          onChange={this.onChange}
-          value={this.state.date}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <DatePicker
+        onChange={onChange}
+        value={props.date}
+      />
+    </div>
+  )
 }
 
 export default DateForm

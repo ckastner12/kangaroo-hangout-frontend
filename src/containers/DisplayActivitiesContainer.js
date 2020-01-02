@@ -11,6 +11,7 @@ export default class DisplayActivitiesContainer extends React.Component {
         super(props);
         this.state = {
             results: [],
+            date: new Date(),
             myActivities: [
                 {name: "Joe's Crab Shack",
                 formatted_address: "123 Jones Strees"}, 
@@ -32,7 +33,9 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     handleChangeDate = (date) => {
-        console.log(typeof date)
+        this.setState({
+            date: date
+        })
     }
 
     handleOnSelect = (id, value) => {
@@ -90,6 +93,7 @@ export default class DisplayActivitiesContainer extends React.Component {
             },
             body: JSON.stringify({
                 event: {
+                    date: this.state.date,
                     user_id: localStorage["id"],
                     activities_attributes: this.state.myActivities
                 }
@@ -127,7 +131,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                 <Divider horizontal>
                         <Button onClick={this.handleOnSave}>
                         <Icon name="calendar plus outline" />Save Event</Button>
-                        <DateForm handleChangeDate={this.handleChangeDate} />
+                        <DateForm handleChangeDate={this.handleChangeDate} date={this.state.date} />
                 </Divider>
                 <div className="activities-display">
                     <SearchActivitiesContainer

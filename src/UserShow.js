@@ -9,7 +9,7 @@ export default class UserShow extends React.Component {
         this.state = {
             upcomingEvents: [],
             pastEvents: [],
-            requestEvents: [],
+            today: new Date(),
             user : {
                 name: "",
                 email: ""
@@ -26,13 +26,35 @@ export default class UserShow extends React.Component {
             }
         })
             .then(resp => resp.json())
-            .then(json => {
-                
-            })
+            .then(this.readJson)
     }
 
     readJson = (json) => {
+        const {attendees, events, name, email} = json
+        this.setState({
+            user: {
+                name: name,
+                email: email
+            },
+            ...this.segmentEvents([...events, ...attendees]) 
+        })
+    }
 
+    segmentEvents = (events) => {
+        let bifurcated = {
+            upcomingEvents: [],
+            pastEvents: [],
+        }
+
+        for (let i = 0; i < events.length; i++) {
+            let eventDate = new Date(events[i].date)
+            if (this.state.today < eventDate) {
+                bifurcated.upcomingEvents.push({...events[i], date: eventDate })
+            } else {
+                bifurcated.pastEvents.push({...events[i], date: eventDate })
+            }
+        }
+        return bifurcated
     }
 
     render() {
@@ -41,15 +63,15 @@ export default class UserShow extends React.Component {
                 <Welcome name={this.state.user.name} />
                 <div className="user upcoming">
                     <Header>Upcoming Events</Header>
-                    <DisplayEvent events={this.state.upcomingEvents}/>
+                    <DisplayEvent />
                 </div>
                 <div className="user past">
                     <Header>Your Past events</Header>
-                    <DisplayEvent events={this.state.pastEvents} />
+                    <DisplayEvent />
                 </div>
                 <div className="user request">
                     <Header>Your Event Invitations</Header>
-                    <DisplayEvent events={this.state.requestEvents}/>
+                    <DisplayEvent />
                 </div>
             </div>
         )
