@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom
 import CreateEvent from './CreateEvent';
 import UserShow from './UserShow'
 import LandingPage from './LandingPage'
-import {Icon, Button} from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react'
+import NavBar from './components/NavBar'
 import LoginModal from './components/LoginModal';
 
 class App extends React.Component {
@@ -90,6 +91,7 @@ class App extends React.Component {
                         onClickOut={this.onClickOut}
                         />
           {this.renderLoginOptions()}
+          <NavBar loggedin={this.state.loggedin} />
           <Route exact path="/" component={LandingPage} />
           <Route path="/events/new" component={() => <CreateEvent 
                                                         handleLogin={this.handleLogin} 
@@ -98,7 +100,6 @@ class App extends React.Component {
             {this.state.loggedin ? <UserShow userId={`${localStorage["id"]}`}/>
               : <Redirect to="/" />}
           </Route>
-            
         </Router>
     )
   }

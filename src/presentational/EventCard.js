@@ -33,7 +33,7 @@ const EventCard = props => {
                     </Feed>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button color="red" onClick={() => props.handleDeleteEvent(props.event)}>Delete</Button><Button secondary>Inspect</Button>
+                    <Button color="red" onClick={() => props.handleDeleteEvent(props.event.id)}>Delete</Button><Button secondary>Inspect</Button>
                 </Card.Content>
             </Card>
         </div>

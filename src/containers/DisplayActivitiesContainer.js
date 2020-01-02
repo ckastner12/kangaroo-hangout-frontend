@@ -12,12 +12,7 @@ export default class DisplayActivitiesContainer extends React.Component {
         this.state = {
             results: [],
             date: new Date(),
-            myActivities: [
-                {name: "Joe's Crab Shack",
-                formatted_address: "123 Jones Strees"}, 
-                {name: "In n out",
-                formatted_address: "124 Jones Strees"},
-            ],
+            myActivities: [],
             search: {
                 query: "",
                 location: "",

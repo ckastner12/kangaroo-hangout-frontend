@@ -57,8 +57,19 @@ export default class UserShow extends React.Component {
         return bifurcated
     }
 
-    handleDeleteEvent = (event) => {
-        fetch()
+    handleDeleteEvent = (eventId) => {
+        fetch(`http://localhost:3001/events/${eventId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+                this.setState({state: this.state})
+            })
     }
 
     render() {
