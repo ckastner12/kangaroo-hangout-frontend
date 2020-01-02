@@ -94,7 +94,7 @@ class App extends React.Component {
           <Route path="/events/new" component={() => <CreateEvent 
                                                         handleLogin={this.handleLogin} 
                                                       />} />
-          <Route path="/users" >
+          <Route path="/user" >
             {this.state.loggedin ? <UserShow userId={`${localStorage["id"]}`}/>
               : <Redirect to="/" />}
           </Route>

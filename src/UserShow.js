@@ -37,7 +37,7 @@ export default class UserShow extends React.Component {
                 email: email
             },
             ...this.segmentEvents([...events, ...attendees]) 
-        })
+        }, () => console.log(this.state.upcomingEvents))
     }
 
     segmentEvents = (events) => {
@@ -63,15 +63,11 @@ export default class UserShow extends React.Component {
                 <Welcome name={this.state.user.name} />
                 <div className="user upcoming">
                     <Header>Upcoming Events</Header>
-                    <DisplayEvent />
+                    <DisplayEvent events={this.state.upcomingEvents}/>
                 </div>
                 <div className="user past">
                     <Header>Your Past events</Header>
-                    <DisplayEvent />
-                </div>
-                <div className="user request">
-                    <Header>Your Event Invitations</Header>
-                    <DisplayEvent />
+                    <DisplayEvent events={this.state.upcomingEvents}/>
                 </div>
             </div>
         )

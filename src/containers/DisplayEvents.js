@@ -3,15 +3,15 @@ import EventCard from '../presentational/EventCard';
 
 const DisplayEvents = props => {
 
-    const renderEvents = () => {
-        return props.events ? props.events.map(event => {
-            return <EventCard event={event}/>
+    const renderEvents = (props) => {
+        return props.events.length > 0 ? props.events.map(event => {
+            return <EventCard event={event} />
         }) : [];
     }
 
     return (
         <>
-            {renderEvents()}
+            {renderEvents(props)}
         </>
     )
 

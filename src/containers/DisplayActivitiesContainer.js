@@ -80,6 +80,9 @@ export default class DisplayActivitiesContainer extends React.Component {
             this.props.handleLogin()
         } else {
             this.postEvent() 
+            this.setState({
+                myActivities: []
+            })
             return <Redirect to="/user" /> 
         }
     }
