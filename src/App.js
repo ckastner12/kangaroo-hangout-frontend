@@ -39,7 +39,6 @@ class App extends React.Component {
   }
 
   handleOnLogin = (login) => {
-    console.log(login)
     this.fetchUser("http://localhost:3001/users/login", login)
         .then(this.loginCallBack)
 }
@@ -76,11 +75,6 @@ class App extends React.Component {
       }
   }
 
-  renderLoginOptions = () => {
-    return this.state.loggedin ? <Button onClick={this.handleLogout}>Log out</Button> 
-    : <Button onClick={this.handleLogin}>Log in</Button>
-  }
-
   render() {
     return (
         <Router>
@@ -90,8 +84,7 @@ class App extends React.Component {
                         handleOnSignup={this.handleOnSignup} 
                         onClickOut={this.onClickOut}
                         />
-          {this.renderLoginOptions()}
-          <NavBar loggedin={this.state.loggedin} />
+          <NavBar loggedin={this.state.loggedin} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
           <Route exact path="/" component={LandingPage} />
           <Route path="/events/new" component={() => <CreateEvent 
                                                         handleLogin={this.handleLogin} 

@@ -1,5 +1,6 @@
 import React from 'react';
 import EventCard from '../presentational/EventCard';
+import {Grid} from 'semantic-ui-react'
 
 const DisplayEvents = props => {
 
@@ -13,9 +14,13 @@ const DisplayEvents = props => {
     }
 
     return (
-        <div className='user-show'>
-            {renderEvents(props)}
-        </div>
+        <Grid>
+            <Grid.Column >
+                <div className='user-show'>
+                    {renderEvents(props)}
+                </div>
+            </Grid.Column>
+        </Grid>
     )
 
 }

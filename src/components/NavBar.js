@@ -1,5 +1,5 @@
 import React from 'react';
-import {Menu} from 'semantic-ui-react'
+import {Menu, Button} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 
 class NavBar extends React.Component {
@@ -7,18 +7,29 @@ class NavBar extends React.Component {
     conditionalUserLink = () => {
         if (this.props.loggedin) {
             return (
-                <NavLink exact to="/user" >
-                    <Menu.Item name='profile'>
-                        Profile
+                <>
+                    <NavLink exact to="/user" >
+                        <Menu.Item name='profile'>
+                            Profile
+                        </Menu.Item>
+                    </NavLink>
+                    <Menu.Item name="login" onClick={this.props.handleLogout}>
+                        Log out
                     </Menu.Item>
-                </NavLink>
+                </>
+            ) 
+        } else {
+            return (
+                <Menu.Item name="login" onClick={this.props.handleLogin}>
+                    Log in
+                </Menu.Item>
             )
         }
     }
     
     render() {
         return (
-            <Menu>
+            <Menu >
                 <NavLink exact to="/" >
                     <Menu.Item name='home'>
                         Home
@@ -29,6 +40,9 @@ class NavBar extends React.Component {
                         Create Event
                     </Menu.Item>
                 </NavLink>
+                <Menu.Menu position="right" >
+                    {this.conditionalUserLink()}
+                </Menu.Menu>
             </Menu>
         )
     }
