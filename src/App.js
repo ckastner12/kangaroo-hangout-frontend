@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import CreateEvent from './CreateEvent';
 import UserShow from './UserShow'
 import LandingPage from './LandingPage'
@@ -95,8 +95,8 @@ class App extends React.Component {
                                                         handleLogin={this.handleLogin} 
                                                       />} />
           <Route path="/users" >
-            localStorage["id"] ? <UserShow {...props} userId=`${localStorage["id"]}` />
-              : <Redirect to="/" />
+            {this.state.loggedin ? <UserShow userId={`${localStorage["id"]}`}/>
+              : <Redirect to="/" />}
           </Route>
             
         </Router>

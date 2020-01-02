@@ -1,6 +1,7 @@
 import React from 'react';
 import DisplayEvent from "./containers/DisplayEvents"
 import {Header} from "semantic-ui-react"
+import Welcome from './presentational/Welcome'
 
 export default class UserShow extends React.Component {
     constructor(props) {
@@ -8,13 +9,36 @@ export default class UserShow extends React.Component {
         this.state = {
             upcomingEvents: [],
             pastEvents: [],
-            requestEvents: []
+            requestEvents: [],
+            user : {
+                name: "",
+                email: ""
+            }
         }
+    }
+
+    componentDidMount() {
+        fetch(`http://localhost:3001/users/${this.props.userId}`, {
+            method: "GET",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                
+            })
+    }
+
+    readJson = (json) => {
+
     }
 
     render() {
         return (
             <div className="user-show">
+                <Welcome name={this.state.user.name} />
                 <div className="user upcoming">
                     <Header>Upcoming Events</Header>
                     <DisplayEvent events={this.state.upcomingEvents}/>

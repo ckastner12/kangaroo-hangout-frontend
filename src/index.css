@@ -40,6 +40,12 @@ code {
   flex: 1;
 }
 
+.landing-container {
+  background-image: url('sand_dunes_sand_salt_ash_122212_1920x1080.jpg');
+  height: 1080px;
+  width: 1980px; 
+}
+
 .loader { 
   text-align: center;
 }

@@ -5,8 +5,8 @@ export default class LandingContainer extends React.Component {
 
     render() {
         return (
-            <div>
-                <Link to="/events/new">TO THE EVENTS!</Link>
+            <div className="landing-container" >
+                
             </div>
         )
     }

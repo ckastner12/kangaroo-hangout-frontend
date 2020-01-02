@@ -3,6 +3,7 @@ import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
 import DateForm from "../components/DateForm";
+import { Redirect } from 'react-router-dom';
 import { Divider, Button, Icon } from "semantic-ui-react";
 
 export default class DisplayActivitiesContainer extends React.Component {
@@ -75,7 +76,8 @@ export default class DisplayActivitiesContainer extends React.Component {
         if (!localStorage["id"]) {
             this.props.handleLogin()
         } else {
-            this.postEvent()
+            this.postEvent() 
+            return <Redirect to="/user" /> 
         }
     }
 
@@ -93,6 +95,10 @@ export default class DisplayActivitiesContainer extends React.Component {
                 }
             }) 
         })
+            .then(resp => resp.json())
+            .then(json => {
+                return true
+            })
     }
     
     handleAdd = (activity) => {
