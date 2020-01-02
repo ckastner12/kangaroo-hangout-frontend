@@ -37,7 +37,7 @@ export default class UserShow extends React.Component {
                 email: email
             },
             ...this.segmentEvents([...events, ...attendees]) 
-        }, () => console.log(this.state.upcomingEvents))
+        })
     }
 
     segmentEvents = (events) => {
@@ -57,19 +57,23 @@ export default class UserShow extends React.Component {
         return bifurcated
     }
 
+    handleDeleteEvent = (event) => {
+        fetch()
+    }
+
     render() {
         return (
-            <div className="user-show">
+            <>
                 <Welcome name={this.state.user.name} />
-                <div className="user upcoming">
+                <div>
                     <Header>Upcoming Events</Header>
-                    <DisplayEvent events={this.state.upcomingEvents}/>
+                    <DisplayEvent events={this.state.upcomingEvents} handleDeleteEvent={this.handleDeleteEvent}/>
                 </div>
-                <div className="user past">
+                <div>
                     <Header>Your Past events</Header>
-                    <DisplayEvent events={this.state.upcomingEvents}/>
+                    <DisplayEvent events={this.state.pastEvents} handleDeleteEvent={this.handleDeleteEvent}/>
                 </div>
-            </div>
+            </>
         )
     }
 }

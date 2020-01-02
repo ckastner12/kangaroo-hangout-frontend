@@ -1,38 +1,42 @@
 import React from 'react'
-import {Card, Feed} from 'semantic-ui-react'
+import {Card, Feed, Button} from 'semantic-ui-react'
 
 const EventCard = props => {
-    
+    const renderDate = (date) => {
+        return `${date.getMonth() + 1}/${date.getDay()}/${date.getFullYear()}`
+    }
     const renderActivities = () => {
-        props.event.activities.map(activity => {
-            console.log(activity)
+        return props.event.activities.map(activity => {
             return (
                 <Feed.Event>
-                    <Feed.Label image={activity.icon ? activity.icon : ''} />
-                    <Feed.Date content={activity.formatted_address} />
+                    <Feed.Label image={activity.icon ? activity.icon : 'https://www.pinclipart.com/picdir/big/397-3973323_kangaroo-silhouette-free-png-image-kangaroo-stencil-png.png'} />
                     <Feed.Content>
                         <Feed.Summary>
                             {activity.name}
                         </Feed.Summary>
+                        <Feed.Meta content={activity.formatted_address} />
                     </Feed.Content>
                 </Feed.Event>
             )
         })
     }
+
     return (
-        <Card>
-            {renderActivities()}
-        </Card>
-        // <Card>
-        //     <Card.Content>
-        //         <Card.Header>{props.event}</Card.Header>
-        //     </Card.Content>
-        //     <Card.Content>
-        //         <Feed>
-        //             {renderActivities()}
-        //         </Feed>
-        //         </Card.Content>
-        //     </Card>
+        <div className="event">
+            <Card key={props.event.id}>
+                <Card.Content>
+                    <Card.Header>{renderDate(props.event.date)}</Card.Header>
+                </Card.Content>
+                <Card.Content >
+                    <Feed>
+                    {renderActivities()}
+                    </Feed>
+                </Card.Content>
+                <Card.Content extra>
+                    <Button color="red" onClick={() => props.handleDeleteEvent(props.event)}>Delete</Button><Button secondary>Inspect</Button>
+                </Card.Content>
+            </Card>
+        </div>
     )
 }
 

@@ -46,6 +46,15 @@ code {
   width: 1980px; 
 }
 
+.user-show {
+  display: flex;
+}
+
+
+.event {
+  flex: 1;
+}
+
 .loader { 
   text-align: center;
 }
