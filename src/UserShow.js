@@ -18,7 +18,7 @@ export default class UserShow extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3001/users/${this.props.userId}`, {
+        fetch(`http://localhost:3001/users/${localStorage["id"]}`, {
             method: "GET",
             headers: {
                 Accept: 'application/json',
@@ -31,6 +31,7 @@ export default class UserShow extends React.Component {
 
     readJson = (json) => {
         const {attendees, events, name, email} = json
+        console.log(events)
         this.setState({
             user: {
                 name: name,

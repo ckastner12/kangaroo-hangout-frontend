@@ -87,10 +87,10 @@ class App extends React.Component {
           <NavBar loggedin={this.state.loggedin} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
           <Route exact path="/" component={LandingPage} />
           <Route path="/events/new" component={() => <CreateEvent 
-                                                        handleLogin={this.handleLogin} 
+                                                        handleLogin={this.handleLogin}  
                                                       />} />
           <Route path="/user" >
-            {this.state.loggedin ? <UserShow userId={`${localStorage["id"]}`}/>
+            {this.state.loggedin ? <UserShow userId={localStorage["id"]}/>
               : <Redirect to="/" />}
           </Route>
         </Router>
