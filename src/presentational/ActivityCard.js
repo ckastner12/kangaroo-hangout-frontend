@@ -16,12 +16,14 @@ const ActivityCard = props => {
     }
 
     return (
-        <Card
-            header={name}
-            // meta={`Types: ${formatTypes}`}
-            description={<span><img className="icon" src={icon}/>  {formatted_address}</span>}
-            extra={extra()}
-        />
+        <div>
+            <Card
+                header={name}
+                // meta={`Types: ${formatTypes}`}
+                description={<span><img className="icon" src={icon}/>  {formatted_address}</span>}
+                extra={extra()}
+            />
+        </div>
     )
 }
 
