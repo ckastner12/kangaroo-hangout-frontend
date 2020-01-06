@@ -1,6 +1,6 @@
 import React from 'react';
 import DisplayEvent from "./containers/DisplayEvents"
-import { Header, Modal, Button } from "semantic-ui-react"
+import { Header, Modal, Button, Icon } from "semantic-ui-react"
 import Welcome from './presentational/Welcome'
 import EditUserModal from './components/EditUserModal';
 
@@ -20,10 +20,6 @@ export default class UserShow extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchUserInfo()
-    }
-
-    componentDidUpdate() {
         this.fetchUserInfo()
     }
 
@@ -75,10 +71,33 @@ export default class UserShow extends React.Component {
 
     handleEditUser = (edited) => {
         console.log(edited)
+        fetch(`http://localhost:3001/users/${localStorage["id"]}`, {
+            method: "PATCH",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(edited)
+            }
+        )
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+            })
     }
 
     handleDeleteUser = () => {
-        console.log("here")
+        fetch(`http://localhost:3001/users/${localStorage["id"]}`, {
+        method: "DELETE",
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        }
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                this.props.handleLogout()
+            })
     }
 
     handleDeleteEvent = (eventId) => {
@@ -113,9 +132,12 @@ export default class UserShow extends React.Component {
                 <br/>
                 <Button onClick={this.toggleEditModal} >Edit Your Info</Button>
                 <Modal open={this.state.edit} handletoggle={this.toggleEditModal}>
-                    <Modal.Header>Edit Your Info</Modal.Header>
+                    <Modal.Header><Icon name="times" onClick={this.toggleEditModal}/>Edit Your Info</Modal.Header>
                     <Modal.Content>
-                        <EditUserModal user={this.state.user}/>
+                        <EditUserModal 
+                            user={this.state.user} 
+                            handleEditUser={this.handleEditUser}
+                            handleDeleteUser={this.handleDeleteUser}/>
                     </Modal.Content>
                 </Modal>
             </>

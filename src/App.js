@@ -90,7 +90,10 @@ class App extends React.Component {
                                                         handleLogin={this.handleLogin}  
                                                       />} />
           <Route path="/user" >
-            {this.state.loggedin ? <UserShow userId={localStorage["id"]}/>
+            {this.state.loggedin ? <UserShow 
+                                      userId={localStorage["id"]}
+                                      handleLogout={this.handleLogout}
+                                      />
               : <Redirect to="/" />}
           </Route>
         </Router>
