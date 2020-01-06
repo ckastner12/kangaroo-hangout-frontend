@@ -82,7 +82,13 @@ export default class UserShow extends React.Component {
         )
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
+                this.setState({
+                    edit: false,
+                    user: {
+                        name: json.name,
+                        email: json.email
+                    }
+                })
             })
     }
 
