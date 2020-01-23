@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom
 import CreateEvent from './CreateEvent';
 import UserShow from './UserShow'
 import LandingPage from './LandingPage'
-import {Button} from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import NavBar from './components/NavBar'
 import LoginModal from './components/LoginModal';
 

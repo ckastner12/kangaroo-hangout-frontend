@@ -8,7 +8,7 @@ Krazy Poems is a program designed to liven up poems or text by identifying nouns
 
 ## Installation
 
-After you've followed the [backend instructions](https://github.com/mattgahrns/noun-swapper-backend)
+After you've followed the [backend instructions](https://github.com/ckastner12/kangaroo-hangout-backend-api)
 
 cd into the proper frontend directory and install the node packages
 
