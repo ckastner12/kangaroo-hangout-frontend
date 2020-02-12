@@ -1,3 +1,4 @@
+const API_ROOT = 'http://localhost:3001/'
 const token = localStorage.getItem('token')
 
 const headers = {
@@ -14,6 +15,14 @@ const login = data => {
     }).then(res => res.json());
 };
 
+const signup = data => {
+    return fetch(`${API_ROOT}/users`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
 const getCurrentUser = () => {
     console.log("getting current user", headers)
     return fetch(`${API_ROOT}/current_user`, {
@@ -27,5 +36,8 @@ export const api = {
     auth: {
         login,
         getCurrentUser
+    },
+    user: {
+        signup
     }
 }

@@ -23,6 +23,13 @@ class App extends React.Component {
     })
   }
 
+  handleLogout = () => {
+    this.setState({
+      loggedin: false
+    })
+    localStorage.clear()
+  }
+
   onClickOut = () => {
     this.setState({
       modal: false
@@ -34,8 +41,6 @@ class App extends React.Component {
         <Router>
           <LoginModal 
                         modal={this.state.modal} 
-                        handleOnLogin={this.handleOnLogin} 
-                        handleOnSignup={this.handleOnSignup} 
                         onClickOut={this.onClickOut}
                         />
           <NavBar loggedin={this.state.loggedin} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
@@ -53,7 +58,6 @@ class App extends React.Component {
         </Router>
     )
   }
-  
-  };
+};
 
 export default App;

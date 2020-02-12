@@ -1,4 +1,5 @@
 import React from 'react'
+import { api } from '../services/api'
 import { Button, Header, Image, Modal , Form, Divider, Icon} from 'semantic-ui-react'
 
 class LoginModal extends React.Component {
@@ -30,20 +31,24 @@ class LoginModal extends React.Component {
         })
     }
 
-    handleLoginClick = () => {
-        this.props.handleOnLogin({user: this.state.login})
-    }
-
-    handleSignupClick = () => {
-        this.props.handleOnSignup({user: this.state.signup})
-    }
-
     handleOnLoginChange = (event) => {
         this.setState({
             login: {
                 email: event.target.value
             }
         })
+    }
+
+    handleLoginClick = () => {
+        api.auth.login(this.state.login)
+    }
+
+    handleSignupClick = () => {
+        api.user.signup({user: this.state.signup})
+            .then(json => {
+                localStorage.setItem('token', json.user.jwt)
+                this.props.onClickOut()
+            })
     }
 
     render() {
@@ -78,10 +83,6 @@ class LoginModal extends React.Component {
                             <label>Password</label>
                             <input type="password" id="password"/>
                         </Form.Field> 
-                        {/* <Form.Field >
-                            <label>Password Confirmation</label>
-                            <input placeholder="Password Confirmation" />
-                        </Form.Field> */}
                         <Form.Button className="login" onClick={this.handleSignupClick} fluid={true} color="yellow">Sign Up</Form.Button>
                     </Form>
                 </Modal.Description>
