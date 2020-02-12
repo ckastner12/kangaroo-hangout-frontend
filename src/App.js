@@ -17,14 +17,6 @@ class App extends React.Component {
     }
   }
 
-  handleLogout = () => {
-    this.setState({
-      loggedin: false
-    }, () => {
-      localStorage.clear()
-    })
-  }
-
   handleLogin = () => {
     this.setState({
       modal: true
@@ -35,42 +27,6 @@ class App extends React.Component {
     this.setState({
       modal: false
     })
-  }
-
-  handleOnLogin = (login) => {
-    this.fetchUser("http://localhost:3001/users/login", login)
-        .then(this.loginCallBack)
-  }
-
-  handleOnSignup = (login) => {
-      this.fetchUser("http://localhost:3001/users", login)
-          .then(this.loginCallBack)
-  }
-
-  fetchUser = (path, user) => {
-      return fetch(path, {
-          method: "POST",
-          headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(user)
-      })
-          .then(resp => resp.json())
-  }
-
-  loginCallBack = (json) => {
-      if (json.status === 'accepted' || json.status === 'created') {
-          this.setState({
-              loggedin: true,
-              modal: false
-          }, () => {
-            console.log(json)
-              localStorage.setItem('token', json.user.jwt)     
-          })
-      } else {
-          console.log(json)
-      }
   }
 
   render() {
