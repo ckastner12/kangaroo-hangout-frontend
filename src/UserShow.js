@@ -14,7 +14,7 @@ export default class UserShow extends React.Component {
             today: new Date(),
             user : {
                 name: "",
-                email: ""
+                email: "",
             }
         }
     }

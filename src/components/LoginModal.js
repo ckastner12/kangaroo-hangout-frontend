@@ -7,11 +7,13 @@ class LoginModal extends React.Component {
         super(props)
         this.state ={
             login: {
-                email: ""
+                email: "",
+                password: ""
             },
             signup: {
                 email: "",
-                name: ""
+                name: "",
+                password: ""
             }
         }
     }
@@ -29,11 +31,11 @@ class LoginModal extends React.Component {
     }
 
     handleLoginClick = () => {
-        this.props.handleOnLogin(this.state.login)
+        this.props.handleOnLogin({user: this.state.login})
     }
 
     handleSignupClick = () => {
-        this.props.handleOnSignup(this.state.signup)
+        this.props.handleOnSignup({user: this.state.signup})
     }
 
     handleOnLoginChange = (event) => {
@@ -55,10 +57,10 @@ class LoginModal extends React.Component {
                             <label>Email</label>
                             <input placeholder="Email" id="email"/>
                         </Form.Field>
-                        {/* <Form.Field >
+                        <Form.Field >
                             <label>Password</label>
                             <input placeholder="Password" />
-                        </Form.Field> */}
+                        </Form.Field>
                         <Form.Button onClick={this.handleLoginClick} className="login" fluid={true} color="green">Login</Form.Button>
                     </Form>
                     <Divider horizontal>Or</Divider>
@@ -72,11 +74,11 @@ class LoginModal extends React.Component {
                             <label>Email</label>
                             <input placeholder="Email" id="email"/>
                         </Form.Field>
-                        {/* <Form.Field >
-                            <label>Password</label>
-                            <input placeholder="Password" />
-                        </Form.Field>
                         <Form.Field >
+                            <label>Password</label>
+                            <input type="password" id="password"/>
+                        </Form.Field> 
+                        {/* <Form.Field >
                             <label>Password Confirmation</label>
                             <input placeholder="Password Confirmation" />
                         </Form.Field> */}

@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      loggedin: !!localStorage["id"],
+      loggedin: !!localStorage["token"],
       modal: false
     }
   }
@@ -41,11 +41,11 @@ class App extends React.Component {
   handleOnLogin = (login) => {
     this.fetchUser("http://localhost:3001/users/login", login)
         .then(this.loginCallBack)
-}
+  }
 
   handleOnSignup = (login) => {
       this.fetchUser("http://localhost:3001/users", login)
-          .then(this.loginCallBack)
+          .then(console.log)
   }
 
   fetchUser = (path, user) => {
@@ -61,14 +61,13 @@ class App extends React.Component {
   }
 
   loginCallBack = (json) => {
-      if (json.message !== "Failed Fetch") {
+      if (json.status !== "Failed Fetch") {
+        
           this.setState({
               loggedin: true,
               modal: false
           }, () => {
-              localStorage.setItem('id', json.user.id)
-              localStorage.setItem('email', json.user.email)
-              
+              localStorage.setItem('token', json.user.id)     
           })
       } else {
           console.log(json)
