@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import CreateEvent from './CreateEvent';
 import UserShow from './UserShow'
 import LandingPage from './LandingPage'
-import { Button } from 'semantic-ui-react'
 import NavBar from './components/NavBar'
 import LoginModal from './components/LoginModal';
 
@@ -14,7 +13,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       loggedin: !!localStorage["token"],
-      modal: false
+      modal: false,
     }
   }
 
@@ -45,7 +44,7 @@ class App extends React.Component {
 
   handleOnSignup = (login) => {
       this.fetchUser("http://localhost:3001/users", login)
-          .then(console.log)
+          .then(this.loginCallBack)
   }
 
   fetchUser = (path, user) => {
@@ -61,13 +60,13 @@ class App extends React.Component {
   }
 
   loginCallBack = (json) => {
-      if (json.status !== "Failed Fetch") {
-        
+      if (json.status === 'accepted' || json.status === 'created') {
           this.setState({
               loggedin: true,
               modal: false
           }, () => {
-              localStorage.setItem('token', json.user.id)     
+            console.log(json)
+              localStorage.setItem('token', json.user.jwt)     
           })
       } else {
           console.log(json)
