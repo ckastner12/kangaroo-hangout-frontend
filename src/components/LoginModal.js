@@ -32,15 +32,23 @@ class LoginModal extends React.Component {
     }
 
     handleOnLoginChange = (event) => {
-        this.setState({
-            login: {
-                email: event.target.value
+        event.persist()
+        this.setState(prevState => {
+            return {
+                    login: {
+                    ...prevState.signup,
+                    [event.target.id]: event.target.value
+                }
             }
         })
     }
 
     handleLoginClick = () => {
-        api.auth.login(this.state.login)
+        api.auth.login({ user: this.state.login })
+            .then(json => {
+                localStorage.setItem('token', json.jwt)
+                this.props.onClickOut()
+            })
     }
 
     handleSignupClick = () => {
@@ -64,7 +72,7 @@ class LoginModal extends React.Component {
                         </Form.Field>
                         <Form.Field >
                             <label>Password</label>
-                            <input placeholder="Password" />
+                            <input placeholder="Password" id="password"/>
                         </Form.Field>
                         <Form.Button onClick={this.handleLoginClick} className="login" fluid={true} color="green">Login</Form.Button>
                     </Form>
