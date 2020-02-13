@@ -81,7 +81,7 @@ export default class DisplayActivitiesContainer extends React.Component {
 
     handleOnSave = () => {
         if (!localStorage["id"]) {
-            this.props.handleLogin()
+            this.props.openModal()
         } else {
             this.postEvent() 
             this.setState({

@@ -47,6 +47,7 @@ class LoginModal extends React.Component {
         api.auth.login({ user: this.state.login })
             .then(json => {
                 localStorage.setItem('token', json.jwt)
+                this.props.handleLogin()
                 this.props.onClickOut()
             })
     }
@@ -55,8 +56,10 @@ class LoginModal extends React.Component {
         api.user.signup({user: this.state.signup})
             .then(json => {
                 localStorage.setItem('token', json.user.jwt)
+                this.props.handlelogin()
                 this.props.onClickOut()
             })
+
     }
 
     render() {

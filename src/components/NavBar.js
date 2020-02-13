@@ -20,7 +20,7 @@ class NavBar extends React.Component {
             ) 
         } else {
             return (
-                <Menu.Item name="login" onClick={this.props.handleLogin}>
+                <Menu.Item name="login" onClick={this.props.openModal}>
                     Log in
                 </Menu.Item>
             )

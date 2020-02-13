@@ -17,9 +17,15 @@ class App extends React.Component {
     }
   }
 
-  handleLogin = () => {
+  openModal = () => {
     this.setState({
       modal: true
+    })
+  }
+
+  handleLogin = () => {
+    this.setState({
+      loggedin: true
     })
   }
 
@@ -42,11 +48,12 @@ class App extends React.Component {
           <LoginModal 
                         modal={this.state.modal} 
                         onClickOut={this.onClickOut}
+                        handleLogin={this.handleLogin}
                         />
-          <NavBar loggedin={this.state.loggedin} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
+          <NavBar loggedin={this.state.loggedin} openModal={this.openModal} handleLogout={this.handleLogout}/>
           <Route exact path="/" component={LandingPage} />
           <Route path="/events/new" component={() => <CreateEvent 
-                                                        handleLogin={this.handleLogin}  
+                                                        openModal={this.openModal}  
                                                       />} />
           <Route path="/user" >
             {this.state.loggedin ? <UserShow 

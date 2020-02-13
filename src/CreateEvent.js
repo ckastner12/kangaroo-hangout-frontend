@@ -6,7 +6,7 @@ export default class CreateEvent extends React.Component {
     render() {
         return (
             <DisplayActivitiesContainer 
-                handleLogin={this.props.handleLogin}
+                openModal={this.props.openModal}
                 eventId={this.props.eventId}
                 />
         )
