@@ -3,6 +3,7 @@ import DisplayEvent from "./containers/DisplayEvents"
 import { Header, Modal, Button, Icon } from "semantic-ui-react"
 import Welcome from './presentational/Welcome'
 import EditUserModal from './components/EditUserModal';
+import { api } from './services/api';
 
 export default class UserShow extends React.Component {
     constructor(props) {
@@ -24,26 +25,23 @@ export default class UserShow extends React.Component {
     }
 
     fetchUserInfo = () => {
-        fetch(`http://localhost:3001/users/${localStorage["id"]}`, {
-            method: "GET",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(resp => resp.json())
+        api.auth.getCurrentUser()
             .then(this.readJson)
     }
 
     readJson = (json) => {
         const {attendees, events, name, email} = json
-        this.setState({
-            user: {
-                name: name,
-                email: email
-            },
-            ...this.segmentEvents([...events, ...attendees]) 
-        })
+        if (json.error) {
+            console.log(json)
+        } else {
+            this.setState({
+                user: {
+                    name: name,
+                    email: email
+                },
+                ...this.segmentEvents([...events, ...attendees]) 
+            })
+        }
     }
 
     segmentEvents = (events) => {

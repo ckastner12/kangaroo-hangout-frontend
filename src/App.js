@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       loggedin: !!localStorage["token"],
-      modal: false,
+      modal: false
     }
   }
 
@@ -45,7 +45,8 @@ class App extends React.Component {
   render() {
     return (
         <Router>
-          <LoginModal 
+          <LoginModal   
+                        error={this.state.error}
                         modal={this.state.modal} 
                         onClickOut={this.onClickOut}
                         handleLogin={this.handleLogin}
@@ -57,7 +58,6 @@ class App extends React.Component {
                                                       />} />
           <Route path="/user" >
             {this.state.loggedin ? <UserShow 
-                                      userId={localStorage["id"]}
                                       handleLogout={this.handleLogout}
                                       />
               : <Redirect to="/" />}

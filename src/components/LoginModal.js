@@ -15,7 +15,8 @@ class LoginModal extends React.Component {
                 email: "",
                 name: "",
                 password: ""
-            }
+            },
+            error: ""
         }
     }
 
@@ -46,18 +47,30 @@ class LoginModal extends React.Component {
     handleLoginClick = () => {
         api.auth.login({ user: this.state.login })
             .then(json => {
-                localStorage.setItem('token', json.jwt)
-                this.props.handleLogin()
-                this.props.onClickOut()
+                if (json.error) {
+                    this.setState({
+                        error: json.error
+                    })
+                } else {
+                    localStorage.setItem('token', json.jwt)
+                    this.props.handleLogin()
+                    this.props.onClickOut() 
+                }
             })
     }
 
     handleSignupClick = () => {
         api.user.signup({user: this.state.signup})
             .then(json => {
-                localStorage.setItem('token', json.user.jwt)
-                this.props.handlelogin()
-                this.props.onClickOut()
+                if (json.error) {
+                    this.setState({
+                        error: json.error
+                    })
+                } else {
+                    localStorage.setItem('token', json.user.jwt)
+                    this.props.handlelogin()
+                    this.props.onClickOut()
+                }
             })
 
     }
@@ -68,6 +81,7 @@ class LoginModal extends React.Component {
                 <Modal.Header><Icon name="times" onClick={this.props.onClickOut}/>Log in/Sign up</Modal.Header>
                 <Modal.Content image>
                 <Modal.Description>
+                    {`${this.state.error}`}
                     <Form onChange={this.handleOnLoginChange} key="login">
                         <Form.Field >
                             <label>Email</label>
@@ -75,7 +89,7 @@ class LoginModal extends React.Component {
                         </Form.Field>
                         <Form.Field >
                             <label>Password</label>
-                            <input placeholder="Password" id="password"/>
+                            <input placeholder="Password" type="password" id="password"/>
                         </Form.Field>
                         <Form.Button onClick={this.handleLoginClick} className="login" fluid={true} color="green">Login</Form.Button>
                     </Form>

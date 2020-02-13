@@ -12,7 +12,13 @@ const login = data => {
         method: 'POST',
         headers,
         body: JSON.stringify(data)
-    }).then(res => res.json());
+    }).then(res => {
+        if(res.ok) {
+            return res.json()
+        } else {
+            return {error: "Not a valid username or password"}
+        }
+    });
 };
 
 const signup = data => {
@@ -28,8 +34,12 @@ const getCurrentUser = () => {
     return fetch(`${API_ROOT}/current_user`, {
       headers
     }).then(res => {
-      // console.log(res)
-      return res.json()});
+        if(res.ok) {
+            return res.json()
+        } else {
+            return {error: "Not a valid username or password"}
+        }
+    })
 };
 
 export const api = {
