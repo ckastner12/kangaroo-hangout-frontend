@@ -43,6 +43,21 @@ const getCurrentUser = () => {
     })
 };
 
+const editCurrentUser = (data) => {
+    return fetch(`${API_ROOT}/current_user`,{
+        method: "PATCH",
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(resp => resp.json())
+}
+
+const deleteCurrentUser = () => {
+    return fetch(`${API_ROOT}/current_user`, {
+        method: "DELETE",
+        headers: headers(),
+    })
+}
+
 const createEvent = (data) => {
     return fetch(`${API_ROOT}/events`, {
         method: "POST",
@@ -73,10 +88,12 @@ const deleteEvent = (data) => {
 export const api = {
     auth: {
         login,
-        getCurrentUser
+        getCurrentUser,
+        editCurrentUser,
+        deleteCurrentUser
     },
     user: {
-        signup
+        signup,
     },
     event: {
         createEvent,
