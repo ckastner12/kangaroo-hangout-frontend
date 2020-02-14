@@ -1,5 +1,4 @@
 const API_ROOT = 'http://localhost:3001'
-let token = localStorage.getItem('token')
 
 const headers = () => {
     return {
@@ -39,10 +38,37 @@ const getCurrentUser = () => {
         if(res.ok) {
             return res.json()
         } else {
-            return {error: "Not a valid username or password"}
+            return {error: "Not a valid profile"}
         }
     })
 };
+
+const createEvent = (data) => {
+    return fetch(`${API_ROOT}/events`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => {
+        if(res.ok) {
+            return res.json()
+        } else {
+            return {error: "Not a valid profile"}
+        }
+    })
+}
+
+const deleteEvent = (data) => {
+    return fetch(`${API_ROOT}/events/${data}`, {
+        method: "DELETE",
+        headers: headers()
+    }).then(res => {
+        if(res.ok) {
+            return res.json()
+        } else {
+            return {error: "Not a valid profile"}
+        }
+    })
+}
 
 export const api = {
     auth: {
@@ -51,5 +77,9 @@ export const api = {
     },
     user: {
         signup
+    },
+    event: {
+        createEvent,
+        deleteEvent
     }
 }

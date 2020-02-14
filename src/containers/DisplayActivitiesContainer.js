@@ -6,6 +6,7 @@ import DateForm from "../components/DateForm";
 import { Redirect } from 'react-router-dom';
 import { Divider, Button, Icon, Modal } from "semantic-ui-react";
 import AddressModal from '../components/AddressModal'
+import { api } from "../services/api";
 
 export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
@@ -80,7 +81,7 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     handleOnSave = () => {
-        if (!localStorage["id"]) {
+        if (!localStorage["token"]) {
             this.props.openModal()
         } else {
             this.postEvent() 
@@ -92,21 +93,10 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     postEvent = () => {
-        fetch("http://localhost:3001/events",{
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                event: {
-                    date: this.state.date,
-                    user_id: localStorage["id"],
-                    activities_attributes: this.state.myActivities
-                }
-            }) 
-        })
-            .then(resp => resp.json())
+        api.event.createEvent({event: {
+            date: this.state.date,
+            activities_attributes: this.state.myActivities
+        }})
             .then(json => {
                 return true
             })

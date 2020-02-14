@@ -1,6 +1,6 @@
 import React from 'react'
 import { api } from '../services/api'
-import { Button, Header, Image, Modal , Form, Divider, Icon} from 'semantic-ui-react'
+import { Header, Modal , Form, Divider, Icon} from 'semantic-ui-react'
 
 class LoginModal extends React.Component {
 
