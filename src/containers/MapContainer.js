@@ -1,10 +1,12 @@
 import React from 'react';
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps"
+import { GoogleMap, withScriptjs, withGoogleMap, Marker } from "react-google-maps"
 
 const Map = props => {
-
+    const { lat, lng } = props.defaultGeocode
     return (
-        <GoogleMap defaultZoom={10} defaultCenter={{lat: 20, lng: 10}}/>
+        <GoogleMap defaultZoom={10} defaultCenter={{lat: lat, lng: lng}}>
+            {}
+        </GoogleMap>
     );
 }
 

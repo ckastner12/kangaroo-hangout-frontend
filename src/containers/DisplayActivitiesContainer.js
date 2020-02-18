@@ -19,6 +19,10 @@ export default class DisplayActivitiesContainer extends React.Component {
             search: {
                 query: "",
                 location: "",
+                geocode: {
+                    lat: 0,
+                    lng: 0,
+                },
                 radius: 32000,
                 type: ""
             }
@@ -31,9 +35,26 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     handleSetAddress = () => {
-        this.setState({
-            searchModal: !this.state.searchModal
-        })
+        fetch("http://localhost:3001/google_api/geocode", {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.search)
+        }).then(resp => resp.json())
+            .then(json => {
+                this.setState({
+                    searchModal: !this.state.searchModal,
+                    search: { 
+                        ...this.state.search,
+                        geocode: {
+                            lat: json.lat,
+                            lng: json.lng
+                        }
+                    }
+                })
+            })
     }
 
     handleChangeDate = (date) => {
@@ -147,6 +168,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                         handleOnChange={this.handleOnChange} 
                         handleOnSelect={this.handleOnSelect} 
                         handleOnSearch={this.handleOnSearch}
+                        defaultGeocode={this.state.search.geocode}
                         />
                 </div>
             </>

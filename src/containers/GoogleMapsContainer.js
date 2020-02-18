@@ -4,8 +4,6 @@ import SearchForm from '../presentational/SearchForm'
 import Loader from "../components/Loader"
 import { Divider } from 'semantic-ui-react'
 
-console.log(process.env.REACT_APP_GOOGLE_API_KEY)
-
 const GoogleMapsContainer = props => {
     return (
         <div className="search-activities search-bar">
@@ -22,6 +20,7 @@ const GoogleMapsContainer = props => {
                     loadingElement={<div style={{height: '100%'}} ><Loader /></div>}
                     containerElement={<div style={{ height: `400px` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
+                    defaultGeocode={props.defaultGeocode}
                     />
             </div>
         </div>
