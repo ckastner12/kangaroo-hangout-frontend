@@ -25,15 +25,21 @@ const login = data => {
 const signup = data => {
     return fetch(`${API_ROOT}/users`, {
         method: "POST",
-        headers,
+        headers: headers(),
         body: JSON.stringify(data)
-    }).then(res => res.json())
+    }).then(res => {
+        if(res.ok) {
+            return res.json()
+        } else {
+            return {error: "Not a valid profile"}
+        }
+    })
 }
 
 const getCurrentUser = () => {
-    console.log("getting current user", headers)
     return fetch(`${API_ROOT}/current_user`, {
-      headers: headers()
+        method: "GET",
+        headers: headers()
     }).then(res => {
         if(res.ok) {
             return res.json()
@@ -48,13 +54,25 @@ const editCurrentUser = (data) => {
         method: "PATCH",
         headers: headers(),
         body: JSON.stringify(data)
-    }).then(resp => resp.json())
+    }).then(resp => {
+        if(resp.ok) {
+            return resp.json()
+        } else {
+            return {error: "Not a valid profile"}
+        }
+    })
 }
 
 const deleteCurrentUser = () => {
     return fetch(`${API_ROOT}/current_user`, {
         method: "DELETE",
         headers: headers(),
+    }).then(resp => {
+        if(resp.ok) {
+            return resp.json()
+        } else {
+            return {error: "Not a valid profile"}
+        }
     })
 }
 

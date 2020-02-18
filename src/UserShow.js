@@ -69,16 +69,7 @@ export default class UserShow extends React.Component {
 
     handleEditUser = (edited) => {
         console.log(edited)
-        fetch(`http://localhost:3001/users/${localStorage["id"]}`, {
-            method: "PATCH",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-                body: JSON.stringify(edited)
-            }
-        )
-            .then(resp => resp.json())
+        api.auth.editCurrentUser({user: edited})
             .then(json => {
                 this.setState({
                     edit: false,
@@ -91,14 +82,7 @@ export default class UserShow extends React.Component {
     }
 
     handleDeleteUser = () => {
-        fetch(`http://localhost:3001/users/${localStorage["id"]}`, {
-        method: "DELETE",
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        }
-        })
-            .then(resp => resp.json())
+        api.auth.deleteCurrentUser()
             .then(json => {
                 this.props.handleLogout()
             })

@@ -73,5 +73,5 @@ code {
   max-height: 600px;
   border-radius: 15px;
   border: 2px solid rgb(255, 90, 95);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
