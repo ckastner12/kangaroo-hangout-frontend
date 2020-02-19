@@ -81,7 +81,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(this.state.search)
+            body: JSON.stringify({google_api: this.state.search})
         })
         .then(resp => resp.json())
         .then(json => {
@@ -169,6 +169,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                         handleOnSelect={this.handleOnSelect} 
                         handleOnSearch={this.handleOnSearch}
                         defaultGeocode={this.state.search.geocode}
+                        markers={this.state.results}
                         />
                 </div>
             </>

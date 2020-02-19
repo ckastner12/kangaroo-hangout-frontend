@@ -21,6 +21,7 @@ const GoogleMapsContainer = props => {
                     containerElement={<div style={{ height: `400px` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
                     defaultGeocode={props.defaultGeocode}
+                    markers={props.markers}
                     />
             </div>
         </div>

@@ -3,9 +3,16 @@ import { GoogleMap, withScriptjs, withGoogleMap, Marker } from "react-google-map
 
 const Map = props => {
     const { lat, lng } = props.defaultGeocode
+    const renderMarkers = () => (
+        props.markers.map(place => {
+            const { lat, lng } = place.geometry.location
+            return (<Marker key={place.id} position={{lat: lat, lng: lng}} />)
+            })
+    )
+
     return (
-        <GoogleMap defaultZoom={10} defaultCenter={{lat: lat, lng: lng}}>
-            {}
+        <GoogleMap defaultZoom={10} center={{lat: lat, lng: lng}} >
+            {renderMarkers()}
         </GoogleMap>
     );
 }
