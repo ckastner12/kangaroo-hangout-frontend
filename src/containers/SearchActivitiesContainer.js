@@ -9,6 +9,7 @@ const SearchActivitiesContainer = props => {
             return <ActivityCard 
                 activity={activity} 
                 key={activity.id}
+                handleSelectPlace={props.handleSelectPlace}
                 handleAdd={props.handleAdd} />
         }) : <h3 className="no-results">No Results</h3>
     }

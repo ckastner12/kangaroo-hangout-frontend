@@ -16,6 +16,7 @@ export default class DisplayActivitiesContainer extends React.Component {
             searchModal: true,
             date: new Date(),
             myActivities: [],
+            selected: null,
             search: {
                 query: "",
                 location: "",
@@ -32,6 +33,12 @@ export default class DisplayActivitiesContainer extends React.Component {
     handleOnChange = (event) => {
         const {id, value} = event.target
         this.handleOnSelect(id, value)
+    }
+
+    handleSelectPlace = (place) => {
+        this.setState({
+            selected: place
+        })
     }
 
     handleSetAddress = () => {
@@ -163,12 +170,15 @@ export default class DisplayActivitiesContainer extends React.Component {
                 <div className="activities-display">
                     <SearchActivitiesContainer
                         handleAdd={this.handleAdd}
+                        handleSelectPlace={this.handleSelectPlace}
                         activities={this.state.results} />
                     <GoogleMapsContainer 
                         handleOnChange={this.handleOnChange} 
                         handleOnSelect={this.handleOnSelect} 
                         handleOnSearch={this.handleOnSearch}
                         defaultGeocode={this.state.search.geocode}
+                        handleSelectPlace={this.handleSelectPlace}
+                        selected={this.state.selected}
                         markers={this.state.results}
                         />
                 </div>

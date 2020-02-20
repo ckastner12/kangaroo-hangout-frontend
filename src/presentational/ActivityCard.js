@@ -10,7 +10,7 @@ const ActivityCard = props => {
             <>
                 {props.handleAdd ? <Button primary onClick={() => props.handleAdd(props.activity)}><Icon name="plus" />Add</Button> 
                 : <Button color="red" onClick={() => props.handleRemove(props.activity)}><Icon name="undo"/>Remove</Button>}
-                <Button secondary>Inspect</Button>
+                <Button secondary onClick={() => props.handleAdd(props.activity)}>Inspect</Button>
             </>
         )
     }
