@@ -22,7 +22,7 @@ const EventCard = props => {
     }
 
     return (
-        <div className="event">
+        <div className="event" data-testid="event-card">
             <Card key={props.event.id}>
                 <Card.Content>
                     <Card.Header>{renderDate(props.event.date)}</Card.Header>

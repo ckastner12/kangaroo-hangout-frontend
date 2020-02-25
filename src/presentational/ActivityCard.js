@@ -16,7 +16,7 @@ const ActivityCard = props => {
     }
 
     return (
-        <div>
+        <div data-testid="activity-card">
             <Card
                 header={name}
                 // meta={`Types: ${formatTypes}`}

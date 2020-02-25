@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Activity Card Matches snapshot with no props 1`] = `
+<div
+  data-testid="activity-card"
+>
+  <div
+    className="ui card"
+    onClick={[Function]}
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Cannot Find Name
+      </div>
+      <span>
+        <img
+          className="icon"
+          src={
+            <Icon
+              as="i"
+              name="marker"
+            />
+          }
+        />
+          
+        No Result Found
+      </span>
+    </div>
+    <div
+      className="extra content"
+    >
+      <button
+        className="ui red button"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="undo icon"
+          onClick={[Function]}
+        />
+        Remove
+      </button>
+      <button
+        className="ui secondary button"
+        onClick={[Function]}
+      >
+        Inspect
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Activity Card Matches snapshot with props 1`] = `
+<div
+  data-testid="activity-card"
+>
+  <div
+    className="ui card"
+    onClick={[Function]}
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Joe's Crab Shack
+      </div>
+      <span>
+        <img
+          className="icon"
+        />
+          
+        1600 Pennsylvania Avenue
+      </span>
+    </div>
+    <div
+      className="extra content"
+    >
+      <button
+        className="ui red button"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="undo icon"
+          onClick={[Function]}
+        />
+        Remove
+      </button>
+      <button
+        className="ui secondary button"
+        onClick={[Function]}
+      >
+        Inspect
+      </button>
+    </div>
+  </div>
+</div>
+`;
