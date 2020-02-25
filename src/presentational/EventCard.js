@@ -3,7 +3,7 @@ import {Card, Feed, Button} from 'semantic-ui-react'
 
 const EventCard = props => {
     const renderDate = (date) => {
-        return `${date.getMonth() + 1}/${date.getDay()}/${date.getFullYear()}`
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
     }
     
     const renderActivities = () => {
