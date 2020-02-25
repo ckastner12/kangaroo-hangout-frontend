@@ -9,7 +9,7 @@ const EventCard = props => {
     const renderActivities = () => {
         return props.event.activities.map(activity => {
             return (
-                <Feed.Event key={activities.id}>
+                <Feed.Event key={activity.id}>
                     <Feed.Label image={activity.icon ? activity.icon : 'https://www.pinclipart.com/picdir/big/397-3973323_kangaroo-silhouette-free-png-image-kangaroo-stencil-png.png'} />
                     <Feed.Content>
                         <Feed.Summary>
@@ -24,7 +24,7 @@ const EventCard = props => {
 
     return (
         <div className="event" data-testid="event-card">
-            <Card key={props.event.id}>
+            <Card >
                 <Card.Content>
                     <Card.Header>{renderDate(props.event.date)}</Card.Header>
                 </Card.Content>

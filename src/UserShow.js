@@ -30,7 +30,7 @@ export default class UserShow extends React.Component {
     }
 
     readJson = (json) => {
-        const {attendees, events, name, email} = json
+        const { attendees, events, name, email } = json
         if (json.error) {
             console.log(json)
         } else {

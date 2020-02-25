@@ -68,7 +68,7 @@ class LoginModal extends React.Component {
                     })
                 } else {
                     localStorage.setItem('token', json.user.jwt)
-                    this.props.handlelogin()
+                    this.props.handleLogin()
                     this.props.onClickOut()
                 }
             })

@@ -116,7 +116,7 @@ export default class DisplayActivitiesContainer extends React.Component {
             this.setState({
                 myActivities: []
             })
-            return <Redirect to="/user" /> 
+            this.props.handleRoutePage(`/user`)
         }
     }
 

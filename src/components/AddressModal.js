@@ -2,7 +2,6 @@ import React from 'react';
 import {Form, Modal, Button} from 'semantic-ui-react'
 
 const AddressModal = props => {
-
     return (
         <Form>
             <Form.Field onChange={props.handleOnChange}>

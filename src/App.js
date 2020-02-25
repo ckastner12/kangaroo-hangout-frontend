@@ -53,7 +53,7 @@ class App extends React.Component {
                         />
           <NavBar loggedin={this.state.loggedin} openModal={this.openModal} handleLogout={this.handleLogout}/>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/events/new" component={() => <CreateEvent 
+          <Route path="/events/new" component={(routerProps) => <CreateEvent {...routerProps}
                                                         openModal={this.openModal}  
                                                       />} />
           <Route path="/user" >
