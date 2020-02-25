@@ -5,10 +5,11 @@ const EventCard = props => {
     const renderDate = (date) => {
         return `${date.getMonth() + 1}/${date.getDay()}/${date.getFullYear()}`
     }
+    
     const renderActivities = () => {
         return props.event.activities.map(activity => {
             return (
-                <Feed.Event>
+                <Feed.Event key={activities.id}>
                     <Feed.Label image={activity.icon ? activity.icon : 'https://www.pinclipart.com/picdir/big/397-3973323_kangaroo-silhouette-free-png-image-kangaroo-stencil-png.png'} />
                     <Feed.Content>
                         <Feed.Summary>
@@ -33,7 +34,8 @@ const EventCard = props => {
                     </Feed>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button color="red" onClick={() => props.handleDeleteEvent(props.event.id)}>Delete</Button><Button secondary>Inspect</Button>
+                    <Button color="red" onClick={() => props.handleDeleteEvent(props.event.id)}>Delete</Button>
+                    {/* <Button secondary>Inspect</Button> */}
                 </Card.Content>
             </Card>
         </div>
@@ -45,7 +47,8 @@ EventCard.defaultProps = {
         date: new Date(),
         activities: [{
             image: "",
-            name: "Cannot be found"
+            name: "Cannot be found",
+            id: 1
         }],
         attendees: ""
     }

@@ -27,6 +27,15 @@ describe("Activity Card", () => {
         expect(getByTestId("activity-card")).toHaveTextContent("1600 Pennsylvania Avenue")
     })
 
+    it("Renders add button with the right prop", () => {
+        const addCallback = () => {
+            return 
+        }
+        const activity = {name: "Joe's Crab Shack", formatted_address: "1600 Pennsylvania Avenue"}
+        const { getByTestId } = render(<ActivityCard handleAdd={addCallback} activity={activity}></ActivityCard>)
+        expect(getByTestId("activity-button")).toHaveTextContent("Add")
+    })
+
     it("Matches snapshot with no props", () => {
         const tree = renderer.create(<ActivityCard></ActivityCard>).toJSON()
         expect(tree).toMatchSnapshot()
