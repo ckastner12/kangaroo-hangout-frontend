@@ -3,7 +3,6 @@ import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
 import MyActivitiesChain from "./MyActivitiesChain";
 import DateForm from "../components/DateForm";
-import { Redirect } from 'react-router-dom';
 import { Divider, Button, Icon, Modal } from "semantic-ui-react";
 import AddressModal from '../components/AddressModal'
 import { api } from "../services/api";
