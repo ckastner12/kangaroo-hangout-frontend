@@ -3,7 +3,7 @@ import {Card, Feed, Button} from 'semantic-ui-react'
 
 const EventCard = props => {
     const renderDate = (date) => {
-        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+        return `${date.getMonth() + 1}/${date.getDate() + 1}/${date.getFullYear()}`
     }
     
     const renderActivities = () => {
@@ -24,7 +24,7 @@ const EventCard = props => {
 
     return (
         <div className="event" data-testid="event-card">
-            <Card >
+            <Card key={props.event.id}>
                 <Card.Content>
                     <Card.Header>{renderDate(props.event.date)}</Card.Header>
                 </Card.Content>

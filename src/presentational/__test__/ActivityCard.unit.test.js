@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from "react-dom"
 import ActivityCard from "./../ActivityCard"
 import { render, cleanup } from '@testing-library/react'
 import "@testing-library/jest-dom/extend-expect"
@@ -8,11 +7,6 @@ import renderer from "react-test-renderer"
 
 describe("Activity Card", () => {
     afterEach(cleanup);
-
-    it("Renders without crashing", () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<ActivityCard></ActivityCard>, div);
-    })
 
     it("Renders card correctly with no props", () => {
         const { getByTestId } = render(<ActivityCard></ActivityCard>)
