@@ -1,6 +1,6 @@
 import React from 'react';
 import ActivityCard from '../presentational/ActivityCard';
-
+import Loader from '../components/Loader'
 
 const SearchActivitiesContainer = props => {
 
@@ -16,7 +16,7 @@ const SearchActivitiesContainer = props => {
 
     return (
         <div className="search-activities results">
-            {renderActivities()}
+            {props.loading ? <Loader /> : renderActivities()}
         </div>
         )
     

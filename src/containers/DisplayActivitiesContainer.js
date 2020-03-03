@@ -11,6 +11,7 @@ export default class DisplayActivitiesContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             results: [],
             searchModal: true,
             date: new Date(),
@@ -81,19 +82,22 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     handleOnSearch = () => {
-        fetch("http://localhost:3001/google_api", {
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({google_api: this.state.search})
-        })
-        .then(resp => resp.json())
-        .then(json => {
-            console.log(json)
-            this.setState({
-                results: json.results
+        this.setState({loading: true}, () => {
+            fetch("http://localhost:3001/google_api", {
+                method: "POST",
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({google_api: this.state.search})
+            })
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+                this.setState({
+                    results: json.results,
+                    loading: false
+                })
             })
         })
     }
@@ -170,6 +174,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                     <SearchActivitiesContainer
                         handleAdd={this.handleAdd}
                         handleSelectPlace={this.handleSelectPlace}
+                        loading={this.state.loading}
                         activities={this.state.results} />
                     <GoogleMapsContainer 
                         handleOnChange={this.handleOnChange} 

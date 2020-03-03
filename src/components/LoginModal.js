@@ -1,12 +1,11 @@
 import React from 'react'
 import { api } from '../services/api'
-import { Header, Modal , Form, Divider, Icon} from 'semantic-ui-react'
+import { Header, Modal , Form, Divider} from 'semantic-ui-react'
 
 class LoginModal extends React.Component {
-
     constructor(props) {
         super(props)
-        this.state ={
+        this.state = {
             login: {
                 email: "",
                 password: ""
@@ -20,6 +19,10 @@ class LoginModal extends React.Component {
         }
     }
 
+    closeConfigShow = (closeOnEscape, closeOnDimmerClick) => () => {
+        this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
+    }
+    
     handleOnSignupChange = (event) => {
         event.persist()
         this.setState(prevState => {
@@ -53,8 +56,7 @@ class LoginModal extends React.Component {
                     })
                 } else {
                     localStorage.setItem('token', json.jwt)
-                    this.props.handleLogin()
-                    this.props.onClickOut() 
+                    this.close()
                 }
             })
     }
@@ -68,8 +70,7 @@ class LoginModal extends React.Component {
                     })
                 } else {
                     localStorage.setItem('token', json.user.jwt)
-                    this.props.handleLogin()
-                    this.props.onClickOut()
+                    this.close()
                 }
             })
 
@@ -77,11 +78,11 @@ class LoginModal extends React.Component {
 
     render() {
         return (
-            <Modal open={this.props.modal} size="small">
-                <Modal.Header><Icon name="times" onClick={this.props.onClickOut}/>Log in/Sign up</Modal.Header>
+            <Modal size="small" closeIcon>
+                <Modal.Header>Log in/Sign up</Modal.Header>
                 <Modal.Content image>
                 <Modal.Description>
-                    {`${this.state.error}`}
+                    <p style={{color: "red"}}>{`${this.state.error}`}</p>
                     <Form onChange={this.handleOnLoginChange} key="login">
                         <Form.Field >
                             <label>Email</label>

@@ -40,8 +40,9 @@ code {
   padding: 20px;
   margin-bottom: 20px;
   min-height: 600px;
-  overflow: auto;
+  overflow-y: auto;
   flex: 1;
+  justify-content: center;
 }
 
 .landing-container {
@@ -71,13 +72,11 @@ code {
   flex: 1;
 }
 
-.loader { 
+.loader-gif { 
   text-align: center;
-}
-
-.gif {
   border-radius: 50%;
-  max-width: 100px;
+  position: relative;
+  width: 50%;
 }
 
 .search-bar {

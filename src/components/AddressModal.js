@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Modal, Button} from 'semantic-ui-react'
+import {Form, Button} from 'semantic-ui-react'
 
 const AddressModal = props => {
     return (
