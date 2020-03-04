@@ -7,18 +7,19 @@ import LandingContainer from './containers/LandingContainer'
 import NavBar from './components/NavBar'
 
 const App = () => {
-
   return (
       <Router>
-        <NavBar />
+        <Route path="/" component={(routerProps) => <NavBar {...routerProps}/>} />
         <Route exact path="/" component={(routerProps) => <LandingContainer {...routerProps} />} />
         <Route path="/events/new" component={(routerProps) => <CreateEvent {...routerProps}
                                                     />} />
-        <Route path="/user" >
-          {localStorage["token"] ? <UserShow 
-                                    />
-            : <Redirect to="/" />}
-        </Route>
+        <Route path="/user" component={() => {
+          if (localStorage["token"]) {
+            return <UserShow />
+          } else {
+            return <Redirect to="/"/>
+          }
+        }} />
       </Router>
   )
 };

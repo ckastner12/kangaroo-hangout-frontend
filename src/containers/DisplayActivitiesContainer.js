@@ -26,7 +26,8 @@ export default class DisplayActivitiesContainer extends React.Component {
                 },
                 radius: 32000,
                 type: ""
-            }
+            },
+            error: ''
         }
     }
 
@@ -113,7 +114,7 @@ export default class DisplayActivitiesContainer extends React.Component {
 
     handleOnSave = () => {
         if (!localStorage["token"]) {
-            this.props.openModal()
+            this.setState({error: "Must Login to Save Event"})
         } else {
             this.postEvent() 
             this.setState({
@@ -165,6 +166,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                     handleRemove={this.handleRemove}
                     />
                 <Divider horizontal>
+                        <p style={{color: "red"}}>{`${this.state.error}`}</p>
                         <Button onClick={this.handleOnSave}>
                         <Icon name="calendar plus outline" />Save Event</Button>
                         <DateForm handleChangeDate={this.handleChangeDate} date={this.state.date} />

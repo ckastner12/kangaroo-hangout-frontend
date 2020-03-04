@@ -17,7 +17,8 @@ const withLogin = (WrappedComponent) => {
                     name: "",
                     password: ""
                 },
-                error: ""
+                error: "",
+                loggedIn: !!localStorage["token"]
             }
         }
 
@@ -54,7 +55,7 @@ const withLogin = (WrappedComponent) => {
                         })
                     } else {
                         localStorage.setItem('token', json.jwt)
-                        this.toggle()
+                        this.handleLogin()
                     }
                 })
         }
@@ -68,10 +69,21 @@ const withLogin = (WrappedComponent) => {
                         })
                     } else {
                         localStorage.setItem('token', json.user.jwt)
-                        this.toggle()
+                        this.handleLogin()
                     }
                 })
     
+        }
+
+        handleLogout = () => {
+            localStorage.clear()
+            this.setState({loggedIn: false})
+            this.props.history.push('/')
+        }
+
+        handleLogin = () => {
+            this.toggle()
+            this.setState({loggedIn: true})
         }
 
         toggle = () => {
@@ -84,7 +96,10 @@ const withLogin = (WrappedComponent) => {
             return (
                 <>
                     <WrappedComponent 
-                    toggle={this.toggle}/>
+                    toggle={this.toggle}
+                    logout={this.handleLogout}
+                    loggedIn={this.state.loggedIn}
+                    />
                     <Modal size="small" open={this.state.open} onClose={this.toggle} closeOnDimmerClick={true}>
                     <Modal.Header>Log in/Sign up</Modal.Header>
                         <Modal.Content image>
