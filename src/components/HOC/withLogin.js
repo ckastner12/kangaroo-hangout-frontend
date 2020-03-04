@@ -92,6 +92,10 @@ const withLogin = (WrappedComponent) => {
             })
         }
 
+        eventLink = () => {
+            this.props.history.push('/events/new')
+        }
+
         render() {
             return (
                 <>
@@ -99,6 +103,7 @@ const withLogin = (WrappedComponent) => {
                     toggle={this.toggle}
                     logout={this.handleLogout}
                     loggedIn={this.state.loggedIn}
+                    eventLink={this.eventLink}
                     />
                     <Modal size="small" open={this.state.open} onClose={this.toggle} closeOnDimmerClick={true}>
                     <Modal.Header>Log in/Sign up</Modal.Header>
