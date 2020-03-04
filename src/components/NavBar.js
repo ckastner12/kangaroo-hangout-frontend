@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {Menu} from 'semantic-ui-react'
-import LoginModal from './LoginModal'
-import {NavLink} from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
+import Navlogin from "./Navlogin"
+import { NavLink } from 'react-router-dom'
 
 const NavBar = props => {
     const [loggedIn, setLoggedIn] = useState(!!localStorage["token"])
@@ -28,7 +28,7 @@ const NavBar = props => {
             ) 
         } else {
             return (
-                ""
+                <Navlogin />
                 )
             }
     }
