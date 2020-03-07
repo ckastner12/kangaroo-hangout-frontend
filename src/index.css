@@ -33,7 +33,6 @@ code {
 .activities-display {
   max-width: 1400px;
   margin: 40px auto 0 auto;
-  display: flex;
 }
 
 .search-activities {
@@ -47,7 +46,7 @@ code {
 
 .landing-container {
   background-image: url('sand_dunes_sand_salt_ash_122212_1920x1080.jpg');
-  height: 100%;
+  height: 100vh;
   width: 100%; 
   display: flex;
   justify-content: center;

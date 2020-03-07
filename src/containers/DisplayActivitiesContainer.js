@@ -13,7 +13,7 @@ export default class DisplayActivitiesContainer extends React.Component {
         this.state = {
             loading: false,
             results: [],
-            searchModal: true,
+            searchModal: false,
             date: new Date(),
             myActivities: [],
             selected: null,
@@ -103,6 +103,10 @@ export default class DisplayActivitiesContainer extends React.Component {
         })
     }
 
+    toggleSearchModal = () => {
+        this.setState({searchModal: !this.state.searchModal})
+    }
+
     inMyActivities = (activity) => {
         for (let i = 0; i < this.state.myActivities.length; i++) {
             if (this.state.myActivities[i].id === activity.id) {
@@ -153,7 +157,7 @@ export default class DisplayActivitiesContainer extends React.Component {
     render() {
         return (
             <>
-                <Modal open={this.state.searchModal}>
+                <Modal open={this.state.searchModal} onClose={this.toggleSearchModal} closeOnDimmerClick={true}>
                     <Modal.Header>Give An Address Before You Search</Modal.Header>
                     <Modal.Content>
                         <AddressModal 
