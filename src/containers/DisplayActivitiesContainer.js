@@ -1,6 +1,7 @@
 import React from "react";
 import GoogleMapsContainer from "./GoogleMapsContainer";
 import SearchActivitiesContainer from "./SearchActivitiesContainer";
+import SearchForm from '../presentational/SearchForm'
 import MyActivitiesChain from "./MyActivitiesChain";
 import DateForm from "../components/DateForm";
 import { Divider, Button, Icon, Modal } from "semantic-ui-react";
@@ -176,12 +177,22 @@ export default class DisplayActivitiesContainer extends React.Component {
                         <DateForm handleChangeDate={this.handleChangeDate} date={this.state.date} />
                         <span onClick={this.handleSetAddress}><b>Address:</b> {this.state.search.location}</span>
                 </Divider>
-                <div className="activities-display">
+                <div className="display" >
+                    <div className="activities-display">
+                        <div className="search-activities search-bar">
+                    <h3>I'll Search Through Google Maps</h3>
+                    <SearchForm 
+                        handleOnChange={this.handleOnChange} 
+                        handleOnSelect={this.handleOnSelect} 
+                        handleOnSearch={this.handleOnSearch}
+                    />
+                    <Divider />
                     <SearchActivitiesContainer
                         handleAdd={this.handleAdd}
                         handleSelectPlace={this.handleSelectPlace}
                         loading={this.state.loading}
                         activities={this.state.results} />
+                    </div>
                     <GoogleMapsContainer 
                         handleOnChange={this.handleOnChange} 
                         handleOnSelect={this.handleOnSelect} 
@@ -191,6 +202,7 @@ export default class DisplayActivitiesContainer extends React.Component {
                         selected={this.state.selected}
                         markers={this.state.results}
                         />
+                </div>
                 </div>
             </>
         )

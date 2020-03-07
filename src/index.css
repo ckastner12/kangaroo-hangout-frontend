@@ -31,17 +31,27 @@ code {
 }
 
 .activities-display {
-  max-width: 1400px;
   margin: 40px auto 0 auto;
+  display: flex;
 }
 
 .search-activities {
   padding: 20px;
   margin-bottom: 20px;
-  min-height: 600px;
+  min-height: 400px;
   overflow-y: auto;
   flex: 1;
   justify-content: center;
+}
+
+.display {
+  display: flex;
+  justify-content: space-around;
+}
+
+.maps-container {
+  height: 650px;
+  width: calc(100vw - 650px);
 }
 
 .landing-container {
@@ -65,7 +75,6 @@ code {
 .user-show {
   display: flex;
 }
-
 
 .event {
   flex: 1;
