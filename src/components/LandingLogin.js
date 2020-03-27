@@ -13,7 +13,7 @@ const LandingLogin = props => {
         } else {
             return (
                 <Button color="red" onClick={props.toggle}>
-                    Sign Up!
+                    
                 </Button>
             )
         }

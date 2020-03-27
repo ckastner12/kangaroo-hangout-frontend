@@ -7,9 +7,10 @@ import renderer from "react-test-renderer"
 
 describe("Activity Card", () => {
     afterEach(cleanup);
-
+    
     it("Renders card correctly with no props", () => {
-        const { getByTestId } = render(<ActivityCard></ActivityCard>)
+        const { getByTestId, getByText } = render(<ActivityCard/>)
+
         expect(getByTestId("activity-card")).toHaveTextContent("Cannot Find Name")
         expect(getByTestId("activity-card")).toHaveTextContent("No Result Found")
     })

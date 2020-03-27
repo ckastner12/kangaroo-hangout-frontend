@@ -1,58 +1,12 @@
-const fakeData = {
+const login = jest.fn(() => Promise.resolve({jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}))
+
+const signup = jest.fn(() => Promise.resolve({user: {jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}}))
+
+export const api = { 
     user: {
-        email: "chris@hotmail.com",
-        name: "Chris Stephens",
-        password: "Boomgoesthedynamite"
+        signup
     },
-    badReponse: {
-        
-    }
-}
-
-const login = data => {
-    return fetch(`${API_ROOT}/auth`, {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify(data)
-    }).then(res => {
-        if(res.ok) {
-            return res.json()
-        } else {
-            return {error: "Not a valid username or password"}
-        }
-    });
-};
-
-const signup = data => {
-    return fetch(`${API_ROOT}/users`, {
-        method: "POST",
-        headers: headers(),
-        body: JSON.stringify(data)
-    }).then(res => {
-        if(res.ok) {
-            return res.json()
-        } else {
-            return {error: "Not a valid profile"}
-        }
-    })
-}
-
-
-
-export const api = {
     auth: {
-        login,
-        badLogin
-        // getCurrentUser,
-        // editCurrentUser,
-        // deleteCurrentUser
-    },
-    user: {
-        signup,
-        badSignup
-    },
-    event: {
-        // createEvent,
-        // deleteEvent
+        login
     }
 }

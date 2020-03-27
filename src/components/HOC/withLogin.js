@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Modal , Form, Divider} from 'semantic-ui-react'
-import { api } from '../../services/api'
+import { api } from "../../services/api"
 
 const withLogin = (WrappedComponent) => {
     class WithLogin extends React.Component {
@@ -69,9 +69,9 @@ const withLogin = (WrappedComponent) => {
                         })
                     } else {
                         localStorage.setItem('token', json.user.jwt)
-                        this.handleLogin()
                     }
                 })
+                .catch(console.log)
     
         }
 
@@ -112,14 +112,14 @@ const withLogin = (WrappedComponent) => {
                             <p style={{color: "red"}}>{`${this.state.error}`}</p>
                             <Form onChange={this.handleOnLoginChange} key="login">
                                 <Form.Field >
-                                    <label>Email</label>
-                                    <input placeholder="Email" id="email"/>
+                                    <label id="login-email">Email</label>
+                                    <input data-testid="login-email" placeholder="Email"/>
                                 </Form.Field>
                                 <Form.Field >
                                     <label>Password</label>
                                     <input placeholder="Password" type="password" id="password"/>
                                 </Form.Field>
-                                <Form.Button onClick={this.handleLoginClick} className="login" fluid={true} color="green">Login</Form.Button>
+                                <Form.Button data-testid="login-btn" onClick={this.handleLoginClick} className="login" fluid={true} color="green">Login</Form.Button>
                             </Form>
                             <Divider horizontal>Or</Divider>
                             <Header>Sign Up</Header>
@@ -136,7 +136,7 @@ const withLogin = (WrappedComponent) => {
                                     <label>Password</label>
                                     <input type="password" id="password"/>
                                 </Form.Field> 
-                                <Form.Button className="login" onClick={this.handleSignupClick} fluid={true} color="yellow">Sign Up</Form.Button>
+                                <Form.Button data-testid="signup-btn" className="login" onClick={this.handleSignupClick} fluid={true} color="yellow">Sign Up</Form.Button>
                             </Form>
                         </Modal.Description>
                         </Modal.Content>

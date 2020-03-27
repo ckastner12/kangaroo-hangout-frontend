@@ -103,7 +103,7 @@ const deleteEvent = (data) => {
     })
 }
 
-export const api = {
+const api = {
     auth: {
         login,
         getCurrentUser,
@@ -118,3 +118,5 @@ export const api = {
         deleteEvent
     }
 }
+
+export { api }

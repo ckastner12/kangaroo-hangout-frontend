@@ -22,7 +22,7 @@ const Navlogin = props => {
         } else {
             return (
                 <Menu.Item onClick={props.toggle}>
-                    Login
+                    Log in
                 </Menu.Item>
             )
         }
