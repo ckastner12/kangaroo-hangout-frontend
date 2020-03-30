@@ -9,31 +9,33 @@ describe("Login Flow", () => {
     })
 
     it("Lets a user login to an account", async () => {
-        const fakeUser = {
+        const fakeUserLogin = {
             email: "chris@hotmail.com",
-            name: "Chris Stephens",
             password: "Boomgoesthedynamite"
+        }
+
+        const fakeUser = {
+            ...fakeUserLogin,
+            name: "Chris Stephens",
         }
 
         const { container, getAllByPlaceholderText, getByText, getByTestId } = renderWithRouter(<App/>)
     
         fireEvent.click(getByText("Log in"))
     
-        const emailInputs = getByTestId("login-email")
-        const nameInputs = getAllByPlaceholderText("Name")
-        const passwordInputs = getAllByPlaceholderText("Password")
+        const emailInput = getAllByPlaceholderText("Email")
+        const nameInput = getAllByPlaceholderText("Name")
+        const passwordInput = getAllByPlaceholderText("Password")
 
-        // api.auth.login.mockImplementationOnce(() => Promise.resolve({jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}))
-    
-        emailInputs.value = fakeUser.email
-        nameInputs.forEach(email => email.value = fakeUser.name)
-        passwordInputs.forEach(email => email.value = fakeUser.password)
-        
+        emailInput.forEach(email => fireEvent.change(email, { target: {value: fakeUser.email}}))
+        passwordInput.forEach(password => fireEvent.change(password, { target: {value: fakeUser.password}}))
+
         fireEvent.click(getByTestId("login-btn"))
 
         await wait(() => expect(window.localStorage.getItem("token")).toBeDefined())
 
         expect(api.auth.login).toHaveBeenCalledTimes(1)
+        expect(api.auth.login).toHaveBeenCalledWith({user: fakeUserLogin})
         expect(window.localStorage.getItem("token")).toBe("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")
 
         fireEvent.click(getByText("Log out"))
@@ -51,23 +53,23 @@ describe("Login Flow", () => {
         const { container, getAllByPlaceholderText, getByText, getByTestId } = renderWithRouter(<App/>)
     
         fireEvent.click(getByText("Log in"))
-    
-        const emailInputs = getByTestId("login-email")
-        const nameInputs = getAllByPlaceholderText("Name")
-        const passwordInputs = getAllByPlaceholderText("Password")
+
+        const emailInput = getAllByPlaceholderText("Email")
+        const nameInput = getAllByPlaceholderText("Name")
+        const passwordInput = getAllByPlaceholderText("Password")
+
+        emailInput.forEach(email => fireEvent.change(email, { target: {value: fakeUser.email}}))
+        nameInput.forEach(name => fireEvent.change(name, { target: {value: fakeUser.name}}))
+        passwordInput.forEach(password => fireEvent.change(password, { target: {value: fakeUser.password}}))
 
         api.user.signup.mockImplementationOnce(() => Promise.resolve({user: {jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}}))
     
-        emailInputs.value = fakeUser.email
-        nameInputs.forEach(email => email.value = fakeUser.name)
-        passwordInputs.forEach(email => email.value = fakeUser.password)
-        
         fireEvent.click(getByTestId("signup-btn"))
 
         await wait(() => expect(window.localStorage.getItem("token")).toBeDefined())
 
         expect(api.user.signup).toHaveBeenCalledTimes(1)
-        expect(api.user.signup).toHaveBeenCalledWith({})
+        expect(api.user.signup).toHaveBeenCalledWith({user: fakeUser})
         expect(window.localStorage.getItem("token")).toBe("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")
     })
 })

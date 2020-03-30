@@ -22,6 +22,12 @@ const withLogin = (WrappedComponent) => {
             }
         }
 
+        handleChange = (type) => {
+            return (e, {name, value}) => {
+                this.setState({[type] : { ...this.state[type], [name]: value }})
+            }
+        }
+
         handleOnSignupChange = (event) => {
             event.persist()
             this.setState(prevState => {
@@ -72,7 +78,6 @@ const withLogin = (WrappedComponent) => {
                     }
                 })
                 .catch(console.log)
-    
         }
 
         handleLogout = () => {
@@ -97,6 +102,7 @@ const withLogin = (WrappedComponent) => {
         }
 
         render() {
+            const {signup, login} = this.state
             return (
                 <>
                     <WrappedComponent 
@@ -109,33 +115,40 @@ const withLogin = (WrappedComponent) => {
                     <Modal.Header>Log in/Sign up</Modal.Header>
                         <Modal.Content image>
                         <Modal.Description>
-                            <p style={{color: "red"}}>{`${this.state.error}`}</p>
-                            <Form onChange={this.handleOnLoginChange} key="login">
-                                <Form.Field >
-                                    <label id="login-email">Email</label>
-                                    <input data-testid="login-email" placeholder="Email"/>
-                                </Form.Field>
-                                <Form.Field >
-                                    <label>Password</label>
-                                    <input placeholder="Password" type="password" id="password"/>
-                                </Form.Field>
+                            <span style={{color: "red"}}>{`${this.state.error}`}</span>
+                            <Form key="login">
+                                <Form.Input 
+                                    placeholder="Email"
+                                    name="email"
+                                    value={login.email}
+                                    onChange={this.handleChange("login")} />
+                                <Form.Input 
+                                    placeholder="Password"
+                                    name="password"
+                                    type="password"
+                                    value={login.password}
+                                    onChange={this.handleChange("login")} />
                                 <Form.Button data-testid="login-btn" onClick={this.handleLoginClick} className="login" fluid={true} color="green">Login</Form.Button>
                             </Form>
                             <Divider horizontal>Or</Divider>
                             <Header>Sign Up</Header>
-                            <Form onChange={this.handleOnSignupChange} key="signup">
-                            <Form.Field >
-                                    <label>Name</label>
-                                    <input placeholder="Name" id="name"/>
-                                </Form.Field>
-                            <Form.Field >
-                                    <label>Email</label>
-                                    <input placeholder="Email" id="email"/>
-                                </Form.Field>
-                                <Form.Field >
-                                    <label>Password</label>
-                                    <input type="password" id="password"/>
-                                </Form.Field> 
+                            <Form key="signup">
+                                <Form.Input 
+                                    placeholder="Name"
+                                    name="name"
+                                    value={signup.name}
+                                    onChange={this.handleChange("signup")} />
+                                <Form.Input 
+                                    placeholder="Email"
+                                    name="email"
+                                    value={signup.email}
+                                    onChange={this.handleChange("signup")} />
+                                <Form.Input 
+                                    placeholder="Password"
+                                    name="password"
+                                    type="password"
+                                    value={signup.password}
+                                    onChange={this.handleChange("signup")} />
                                 <Form.Button data-testid="signup-btn" className="login" onClick={this.handleSignupClick} fluid={true} color="yellow">Sign Up</Form.Button>
                             </Form>
                         </Modal.Description>
