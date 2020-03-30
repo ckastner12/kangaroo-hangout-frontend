@@ -15,13 +15,6 @@ code {
 #root {
   height: 100%;
 }
-
-.activity-chain {
-  height: 250px;
-  background: rgb(255, 90, 95);
-  display: flex;
-}
-
 .my-activity {
   flex: 1;
 }

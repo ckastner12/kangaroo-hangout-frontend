@@ -5,6 +5,7 @@ import SearchForm from '../presentational/SearchForm'
 import MyActivitiesChain from "./MyActivitiesChain";
 import DateForm from "../components/DateForm";
 import { Divider, Button, Icon, Modal } from "semantic-ui-react";
+import "./styles/DisplayActivitiesContainer.css"
 import AddressModal from '../components/AddressModal'
 import { api } from "../services/api";
 
@@ -14,7 +15,7 @@ export default class DisplayActivitiesContainer extends React.Component {
         this.state = {
             loading: false,
             results: [],
-            searchModal: false,
+            searchModal: true,
             date: new Date(),
             myActivities: [],
             selected: null,
@@ -171,11 +172,21 @@ export default class DisplayActivitiesContainer extends React.Component {
                     handleRemove={this.handleRemove}
                     />
                 <Divider horizontal>
+                    <ul className="divider-list">
+                        <li>
                         <p style={{color: "red"}}>{`${this.state.error}`}</p>
-                        <Button onClick={this.handleOnSave}>
-                        <Icon name="calendar plus outline" />Save Event</Button>
-                        <DateForm handleChangeDate={this.handleChangeDate} date={this.state.date} />
-                        <span onClick={this.handleSetAddress}><b>Address:</b> {this.state.search.location}</span>
+                        </li>
+                        <li>
+                            <Button color="primary" onClick={this.handleOnSave}>
+                            <Icon name="calendar plus outline" />Save Event</Button>
+                        </li>
+                        <li>
+                            <DateForm handleChangeDate={this.handleChangeDate} date={this.state.date} />
+                        </li>
+                        <li>
+                            <button onClick={this.toggleSearchModal}><b>Address:</b> {this.state.search.location}</button>
+                        </li>
+                    </ul>
                 </Divider>
                 <div className="display" >
                     <div className="activities-display">
