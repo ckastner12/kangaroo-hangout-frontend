@@ -17,26 +17,6 @@ const MyActivitiesChain = props => {
     return (
         <div className="activity-chain">
             <ul>
-                <li>
-                    <ActivityCard 
-                    className="my-activity"/>
-                </li>
-                <li>
-                    <ActivityCard 
-                    className="my-activity"/>
-                </li>
-                <li>
-                    <ActivityCard 
-                    className="my-activity"/>
-                </li>
-                <li>
-                    <ActivityCard 
-                    className="my-activity"/>
-                </li>
-                <li>
-                    <ActivityCard 
-                    className="my-activity"/>
-                </li>
                 {props.myActivities ? renderMyActivities() : []} 
             </ul>
         </div>
