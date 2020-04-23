@@ -75,6 +75,7 @@ const withLogin = (WrappedComponent) => {
                         })
                     } else {
                         localStorage.setItem('token', json.user.jwt)
+                        this.handleLogin()
                     }
                 })
                 .catch(console.log)
@@ -158,7 +159,6 @@ const withLogin = (WrappedComponent) => {
             )
         }
     }
-
     return WithLogin
 }
 

@@ -91,9 +91,10 @@ export default class UserShow extends React.Component {
     handleDeleteEvent = (eventId) => {
         api.event.deleteEvent(eventId)
             .then(json => {
-                console.log(json)
-                this.setState({state: this.state})
-            })
+                this.setState({
+                    pastEvents: this.state.pastEvents.filter(event => event.id != eventId),
+                    upcomingEvents: this.state.upcomingEvents.filter(event => event.id != eventId)
+            })})
     }
 
     render() {

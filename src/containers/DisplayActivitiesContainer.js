@@ -45,7 +45,7 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     handleSetAddress = () => {
-        fetch("http://localhost:3001/google_api/geocode", {
+        fetch("https://evening-peak-84473.herokuapp.com/google_api/geocode", {
             method: "POST",
             headers: {
                 Accept: 'application/json',
@@ -86,7 +86,7 @@ export default class DisplayActivitiesContainer extends React.Component {
 
     handleOnSearch = () => {
         this.setState({loading: true}, () => {
-            fetch("http://localhost:3001/google_api", {
+            fetch("https://evening-peak-84473.herokuapp.com/google_api", {
                 method: "POST",
                 headers: {
                     Accept: 'application/json',
