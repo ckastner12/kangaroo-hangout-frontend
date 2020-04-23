@@ -1,4 +1,4 @@
-const API_ROOT = 'http://localhost:3001'
+const API_ROOT = 'https://evening-peak-84473.herokuapp.com'
 
 const headers = () => {
     return {
