@@ -132,7 +132,7 @@ export default class DisplayActivitiesContainer extends React.Component {
 
     postEvent = () => {
         api.event.createEvent({event: {
-            date: this.state.date,
+            date: this.state.date.toDateString(),
             activities_attributes: this.state.myActivities
         }})
             .then(json => {

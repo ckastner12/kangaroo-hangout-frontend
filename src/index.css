@@ -91,3 +91,8 @@ code {
   border: 2px solid rgb(255, 90, 95);
   overflow-y: auto;
 }
+
+.content  #activities{
+  overflow: auto;
+  height: 200px;
+}
