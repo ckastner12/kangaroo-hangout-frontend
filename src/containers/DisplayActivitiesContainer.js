@@ -45,14 +45,7 @@ export default class DisplayActivitiesContainer extends React.Component {
     }
 
     handleSetAddress = () => {
-        fetch("https://evening-peak-84473.herokuapp.com/google_api/geocode", {
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state.search)
-        }).then(resp => resp.json())
+        api.google.fetchAddress(this.state.search)
             .then(json => {
                 this.setState({
                     searchModal: !this.state.searchModal,
@@ -86,15 +79,7 @@ export default class DisplayActivitiesContainer extends React.Component {
 
     handleOnSearch = () => {
         this.setState({loading: true}, () => {
-            fetch("https://evening-peak-84473.herokuapp.com/google_api", {
-                method: "POST",
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({google_api: this.state.search})
-            })
-            .then(resp => resp.json())
+            api.google.fetchPlaces(this.state.search)
             .then(json => {
                 console.log(json)
                 this.setState({

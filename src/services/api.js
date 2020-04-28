@@ -103,6 +103,30 @@ const deleteEvent = (data) => {
     })
 }
 
+const fetchPlaces = (search) => {
+    return fetch(`${API_ROOT}/google_api`, {
+        method: "POST",
+        headers: {
+            Accept: 'applicaton/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({google_api: search})
+    })
+    .then(resp => resp.json())
+}
+
+const fetchAddress = (search) => {
+    fetch(`${API_ROOT}/google_api/geocode`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(search)
+        }).then(resp => resp.json())
+}
+
+
 const api = {
     auth: {
         login,
@@ -116,6 +140,10 @@ const api = {
     event: {
         createEvent,
         deleteEvent
+    },
+    google: {
+        fetchPlaces,
+        fetchAddress
     }
 }
 
