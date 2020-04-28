@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/kangaroo-hangout-frontend/static/css/main.c0b99309.chunk.css",
-    "main.js": "/kangaroo-hangout-frontend/static/js/main.6bbb5f7b.chunk.js",
-    "main.js.map": "/kangaroo-hangout-frontend/static/js/main.6bbb5f7b.chunk.js.map",
+    "main.js": "/kangaroo-hangout-frontend/static/js/main.a6b747e1.chunk.js",
+    "main.js.map": "/kangaroo-hangout-frontend/static/js/main.a6b747e1.chunk.js.map",
     "runtime-main.js": "/kangaroo-hangout-frontend/static/js/runtime-main.c23e549b.js",
     "runtime-main.js.map": "/kangaroo-hangout-frontend/static/js/runtime-main.c23e549b.js.map",
     "static/css/2.4482b0e7.chunk.css": "/kangaroo-hangout-frontend/static/css/2.4482b0e7.chunk.css",
-    "static/js/2.b5ca559e.chunk.js": "/kangaroo-hangout-frontend/static/js/2.b5ca559e.chunk.js",
-    "static/js/2.b5ca559e.chunk.js.map": "/kangaroo-hangout-frontend/static/js/2.b5ca559e.chunk.js.map",
+    "static/js/2.a76f85d4.chunk.js": "/kangaroo-hangout-frontend/static/js/2.a76f85d4.chunk.js",
+    "static/js/2.a76f85d4.chunk.js.map": "/kangaroo-hangout-frontend/static/js/2.a76f85d4.chunk.js.map",
     "index.html": "/kangaroo-hangout-frontend/index.html",
-    "precache-manifest.b9db9bc7a096e61a5e6b8916b9636e6e.js": "/kangaroo-hangout-frontend/precache-manifest.b9db9bc7a096e61a5e6b8916b9636e6e.js",
+    "precache-manifest.de77e34a5b3d7395a3f9accfff54bda6.js": "/kangaroo-hangout-frontend/precache-manifest.de77e34a5b3d7395a3f9accfff54bda6.js",
     "service-worker.js": "/kangaroo-hangout-frontend/service-worker.js",
     "static/css/2.4482b0e7.chunk.css.map": "/kangaroo-hangout-frontend/static/css/2.4482b0e7.chunk.css.map",
     "static/css/main.c0b99309.chunk.css.map": "/kangaroo-hangout-frontend/static/css/main.c0b99309.chunk.css.map",
-    "static/js/2.b5ca559e.chunk.js.LICENSE.txt": "/kangaroo-hangout-frontend/static/js/2.b5ca559e.chunk.js.LICENSE.txt",
+    "static/js/2.a76f85d4.chunk.js.LICENSE.txt": "/kangaroo-hangout-frontend/static/js/2.a76f85d4.chunk.js.LICENSE.txt",
     "static/media/index.css": "/kangaroo-hangout-frontend/static/media/sand_dunes_sand_salt_ash_122212_1920x1080.2b310f73.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.c23e549b.js",
     "static/css/2.4482b0e7.chunk.css",
-    "static/js/2.b5ca559e.chunk.js",
+    "static/js/2.a76f85d4.chunk.js",
     "static/css/main.c0b99309.chunk.css",
-    "static/js/main.6bbb5f7b.chunk.js"
+    "static/js/main.a6b747e1.chunk.js"
   ]
 }

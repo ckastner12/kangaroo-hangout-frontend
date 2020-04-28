@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bc481f163e3a59506e8518df4f2bb8e5",
+    "revision": "e1e060f38e9cef89f8b84e220b248d11",
     "url": "/kangaroo-hangout-frontend/index.html"
   },
   {
-    "revision": "af5c56d9986c52035243",
+    "revision": "b8d1b23891d18503004e",
     "url": "/kangaroo-hangout-frontend/static/css/2.4482b0e7.chunk.css"
   },
   {
-    "revision": "7d54f3652e49a439382b",
+    "revision": "38d3c1687bd345de76e2",
     "url": "/kangaroo-hangout-frontend/static/css/main.c0b99309.chunk.css"
   },
   {
-    "revision": "af5c56d9986c52035243",
-    "url": "/kangaroo-hangout-frontend/static/js/2.b5ca559e.chunk.js"
+    "revision": "b8d1b23891d18503004e",
+    "url": "/kangaroo-hangout-frontend/static/js/2.a76f85d4.chunk.js"
   },
   {
     "revision": "a669bc843e9f5588147494f263861382",
-    "url": "/kangaroo-hangout-frontend/static/js/2.b5ca559e.chunk.js.LICENSE.txt"
+    "url": "/kangaroo-hangout-frontend/static/js/2.a76f85d4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7d54f3652e49a439382b",
-    "url": "/kangaroo-hangout-frontend/static/js/main.6bbb5f7b.chunk.js"
+    "revision": "38d3c1687bd345de76e2",
+    "url": "/kangaroo-hangout-frontend/static/js/main.a6b747e1.chunk.js"
   },
   {
     "revision": "11f27de3a6abb75088d7",
