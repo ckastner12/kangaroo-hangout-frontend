@@ -116,7 +116,7 @@ const fetchPlaces = (search) => {
 }
 
 const fetchAddress = (search) => {
-    fetch(`${API_ROOT}/google_api/geocode`, {
+    return fetch(`${API_ROOT}/google_api/geocode`, {
             method: "POST",
             headers: {
                 Accept: 'application/json',
