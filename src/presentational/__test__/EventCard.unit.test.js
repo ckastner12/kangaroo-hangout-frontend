@@ -10,7 +10,7 @@ describe("EventCard", () => {
         const {getByTestId} = render(<EventCard></EventCard>)
         const today = new Date()
         expect(getByTestId("event-card")).toHaveTextContent("Cannot be found")
-        expect(getByTestId("event-card")).toHaveTextContent(`${today.getMonth() + 1}/${today.getDate() + 1}/${today.getFullYear()}`)
+        expect(getByTestId("event-card")).toHaveTextContent(today.toDateString())
     })
     it('renders correctly with props', () => {
         const event = {date: new Date('2020-02-26'), activities: [
@@ -22,7 +22,7 @@ describe("EventCard", () => {
         expect(getByTestId("event-card")).toHaveTextContent("Joe's Crab Shack")
         expect(getByTestId("event-card")).toHaveTextContent("Ortiz's")
         expect(getByTestId("event-card")).toHaveTextContent("In-n-out")
-        expect(getByTestId("event-card")).toHaveTextContent(`${event.date.getMonth() + 1}/${event.date.getDate() + 1}/${event.date.getFullYear()}`)
+        expect(getByTestId("event-card")).toHaveTextContent(event.date.toDateString())
     })
 
 })

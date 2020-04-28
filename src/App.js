@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
 import CreateEvent from './CreateEvent';
 import UserShow from './UserShow'
 import LandingContainer from './containers/LandingContainer'
